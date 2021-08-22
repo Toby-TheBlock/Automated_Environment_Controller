@@ -1,0 +1,15 @@
+﻿@page
+@model ConfigurationModel
+@{
+    ViewData["Title"] = "Configuration";
+}
+
+<h1>Configure the Enviroment Controller!</h1>
+<h2>Change the thresholdvalues to your liking.</h2>
+
+@if (Model.Test() == 1)
+{
+    <p>
+        <strong>Works!</strong>
+    </p>
+}
