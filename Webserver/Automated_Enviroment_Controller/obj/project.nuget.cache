@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gGf9xO+g+R+LrMY74PM80f+q07XOtLDciUyhC9Sk/3aa8eZx33mOJv5WlydmSvtFEZ41iv/aKGpvm2oEKCcl3w==",
+  "dgSpecHash": "kDfmyh9ngc8QsZntd3BYhN8ntltn2NM5xqYHaWzB/mfsXbjknsMJfb2oIaRLUSn+IyFCwi1cJKoOaAduAGAgcQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tobias\\OneDrive\\Dokumenter\\Programming\\Automated_Enviroment_Controller\\Automated_Enviroment_Controller\\Automated_Enviroment_Controller.csproj",
+  "projectFilePath": "C:\\Users\\Tobias\\OneDrive\\Dokumenter\\Programming\\Automated_Enviroment_Controller\\Webserver\\Automated_Enviroment_Controller\\Automated_Enviroment_Controller.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tobias\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\5.0.9\\microsoft.aspnetcore.mvc.razor.extensions.5.0.9.nupkg.sha512",
     "C:\\Users\\Tobias\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\5.0.9\\microsoft.aspnetcore.mvc.razor.runtimecompilation.5.0.9.nupkg.sha512",
