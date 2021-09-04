@@ -2,12 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Data_Logging_Application
 {
     class TempratureSensor : Sensor
     {
+
+
+        public override void GetData()
+        {
+
+            Console.WriteLine();
+        }
+
+        private double CovertVoltageToTemp(double voltage)
+        {
+            return voltage * 100 - 50;
+        }
 
     }
 }

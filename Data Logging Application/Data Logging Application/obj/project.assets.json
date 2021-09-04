@@ -751,23 +751,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DailyDriver\\.nuget\\packages\\": {},
+    "C:\\Users\\Tobias\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DailyDriver\\OneDrive\\Dokumenter\\Programming\\Automated_Enviroment_Controller\\Data Logging Application\\Data Logging Application\\Data Logging Application.csproj",
+      "projectUniqueName": "C:\\Users\\Tobias\\OneDrive\\Dokumenter\\Programming\\Automated_Enviroment_Controller\\Data Logging Application\\Data Logging Application\\Data Logging Application.csproj",
       "projectName": "Data Logging Application",
-      "projectPath": "C:\\Users\\DailyDriver\\OneDrive\\Dokumenter\\Programming\\Automated_Enviroment_Controller\\Data Logging Application\\Data Logging Application\\Data Logging Application.csproj",
-      "packagesPath": "C:\\Users\\DailyDriver\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DailyDriver\\OneDrive\\Dokumenter\\Programming\\Automated_Enviroment_Controller\\Data Logging Application\\Data Logging Application\\obj\\",
+      "projectPath": "C:\\Users\\Tobias\\OneDrive\\Dokumenter\\Programming\\Automated_Enviroment_Controller\\Data Logging Application\\Data Logging Application\\Data Logging Application.csproj",
+      "packagesPath": "C:\\Users\\Tobias\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Tobias\\OneDrive\\Dokumenter\\Programming\\Automated_Enviroment_Controller\\Data Logging Application\\Data Logging Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\DailyDriver\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Tobias\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

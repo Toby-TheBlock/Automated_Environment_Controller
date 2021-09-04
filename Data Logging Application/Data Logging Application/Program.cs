@@ -19,9 +19,12 @@ namespace Data_Logging_Application
             while (!databaseReady);
             */
 
+
             string sourcePath = Path.Combine(Environment.CurrentDirectory, @"Sql_Queries\");
             string[] dicFiles = Directory.GetFiles(sourcePath, "*", SearchOption.TopDirectoryOnly);
             Console.WriteLine(dicFiles);
+
+            dbm.CallProcedureWithReturn(dbm.DbName, "SelectAllFromTable", new Dictionary<string, string>() { { "SENSOR", "10" } });
         }
     }
 }

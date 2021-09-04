@@ -33,7 +33,7 @@ namespace Data_Logging_Application
             try
             {
                 string sourcePath = Path.Combine(Environment.CurrentDirectory, @"Sql_Queries\");
-                string sqlQuery = File.ReadAllText(sourcePath + "setupDBStucture.sql");
+                string sqlQuery = File.ReadAllText(sourcePath + "setupDB.sql");
                 SqlConnection conn = OpenDatabaseConnection("Setup");
                 SqlCommand comm = new SqlCommand(sqlQuery, conn);
                 conn.Open();
