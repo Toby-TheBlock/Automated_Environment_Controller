@@ -38,7 +38,7 @@ namespace Data_Logging_and_Management_Application
             // 
             this.picLoadingIcon.BackColor = System.Drawing.Color.White;
             this.picLoadingIcon.Location = new System.Drawing.Point(-1, -2);
-            this.picLoadingIcon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picLoadingIcon.Margin = new System.Windows.Forms.Padding(2);
             this.picLoadingIcon.Name = "picLoadingIcon";
             this.picLoadingIcon.Size = new System.Drawing.Size(326, 329);
             this.picLoadingIcon.TabIndex = 0;
@@ -52,9 +52,8 @@ namespace Data_Logging_and_Management_Application
             this.lblInfoText.Location = new System.Drawing.Point(82, 89);
             this.lblInfoText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblInfoText.Name = "lblInfoText";
-            this.lblInfoText.Size = new System.Drawing.Size(169, 13);
+            this.lblInfoText.Size = new System.Drawing.Size(0, 13);
             this.lblInfoText.TabIndex = 1;
-            this.lblInfoText.Text = "Setting up Database connection...";
             // 
             // SplashScreenForm
             // 
@@ -64,7 +63,7 @@ namespace Data_Logging_and_Management_Application
             this.Controls.Add(this.lblInfoText);
             this.Controls.Add(this.picLoadingIcon);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "SplashScreenForm";
             this.Text = "Configuration";

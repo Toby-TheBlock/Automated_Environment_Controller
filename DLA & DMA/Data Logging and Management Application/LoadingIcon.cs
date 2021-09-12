@@ -16,7 +16,7 @@ namespace Data_Logging_and_Management_Application
 
             circles = new List<Circle>()
             {
-                new Circle(150, 150, circleColor, circleRadius, currentAngle)
+                new Circle(160, 150, circleColor, circleRadius, currentAngle)
             };
 
             for (int i = 0; i < amountOfCircles; i++)

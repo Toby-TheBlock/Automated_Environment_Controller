@@ -11,7 +11,7 @@ namespace Data_Logging_and_Management_Application
         private LoadingIcon activeLoadingIcon;
         private DatabaseManager dbm = DatabaseManager.Singleton;
         private int connStatus = 0;
-        private Point defaultTextLoc = new Point(75, 100);
+        private Point defaultTextLoc = new Point(70, 100);
         private Thread parallellThread;
 
         public SplashScreenForm()
@@ -21,41 +21,47 @@ namespace Data_Logging_and_Management_Application
 
         private async void SetupDatabaseConnection()
         {
-            StartNewThread();
-
+            int counter = 0;
             while (connStatus == 0)
             {
+                if (parallellThread == null && counter > 20)
+                {
+                    StartNewThread();
+                }
+
                 picLoadingIcon.Refresh();
                 Thread.Sleep(100);
+                counter++;
             }
 
             switch (connStatus)
             {
                 case 1:
+                    Thread.Sleep(1000);
                     UpdateInfoText(connStatus);
-                    Thread.Sleep(3000);
                     Program.OpenMainForm = true;
-                    Application.Exit();
                     break;
 
                 case 2:
                     UpdateInfoText(connStatus);
+                    Thread.Sleep(2000);
 
                     if (!await dbm.ConfigureDatabase())
                     {
                         MessageBox.Show("Something went wrong under the configuration of the database!");
+                        Application.Exit();
                     }
 
-                    Thread.Sleep(3000);
-                    Application.Exit();
+                    Program.OpenMainForm = true;
                     break;
 
                 case 3:
                     UpdateInfoText(connStatus);
-                    Thread.Sleep(3000);
-                    Application.Exit();
                     break;
             }
+
+            Thread.Sleep(2500);
+            Application.Exit();
         }
 
         private void StartNewThread()
@@ -96,31 +102,33 @@ namespace Data_Logging_and_Management_Application
         /// <param name="status">Integer indicating which status is to be shown.</param>
         public void UpdateInfoText(int status=0)
         {
+            lblInfoText.Invalidate();
             string newText;
             Point newPosition;
 
             switch (status)
             {
                 case 1:
-                    newText = "Successfully connected!";
-                    newPosition = new Point(defaultTextLoc.X + 15, defaultTextLoc.Y);
+                    newText = "Connection has successfully been established!";
+                    newPosition = new Point(defaultTextLoc.X - 20, defaultTextLoc.Y);
                     break;
 
                 case 2:
-                    newText = "Couldn't connect to the " + dbm.DbName + " database,\n" +
-                              "    because it doesn't exists on the SQL-server.\n" +
-                              "  Setting up the missing DB and then trying again!\n";
-                    newPosition = new Point(defaultTextLoc.X - 55, defaultTextLoc.Y - 15); ;
+                    newText = "Couldn't connect to the " + dbm.DbName + " database.\n" +
+                              "                    It doesn't exists on the SQL-server.\n" +
+                              "       Setting up the missing DB and then trying again!\n";
+                    newPosition = new Point(defaultTextLoc.X - 45, defaultTextLoc.Y - 15); ;
                     break;
 
                 case 3:
-                    newText = "Couldn't connect to the SQL-server. No SQL-server is running under: localhost\\SQLEXPRESS\n" +
-                        "Please start the SQL-server and try again.\n";
-                    newPosition = new Point(defaultTextLoc.X - 55, defaultTextLoc.Y - 15);
+                    newText = "                  Couldn't connect to the SQL-server.\n" +
+                              " No SQL-server is running under: localhost\\SQLEXPRESS\n" +
+                              "               Please start the SQL-server and try again.\n";
+                    newPosition = new Point(defaultTextLoc.X - 50, defaultTextLoc.Y - 15);
                     break;
 
                 default:
-                    newText = "Setting up Database connection...";
+                    newText = "Setting up the Database connection...";
                     newPosition = defaultTextLoc;
                     break;
             }
