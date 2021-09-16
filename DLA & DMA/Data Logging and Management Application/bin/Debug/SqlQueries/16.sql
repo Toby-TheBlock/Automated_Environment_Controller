@@ -5,7 +5,7 @@ CREATE PROCEDURE GetLastDatasample
 DECLARE 
     @sql NVARCHAR(MAX);
 
-SET @sql = N'SELECT MAX(Timestamp) FROM DATA WHERE SensorID = ''' + @SensorID + '''';
+SET @sql = N'SELECT MAX(Timestamp) AS "Timestamp" FROM DATA WHERE SensorID = ''' + @SensorID + '''';
 
 EXEC sp_executesql @sql;
 

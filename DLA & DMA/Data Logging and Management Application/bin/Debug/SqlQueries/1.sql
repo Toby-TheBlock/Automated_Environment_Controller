@@ -11,10 +11,6 @@ INSERT USER_ACCOUNT (Username, Password, RoleID) VALUES ('Testbruker', 'slippmeg
 INSERT SENSOR_TYPE (SensorType) VALUES ('Light level')
 INSERT SENSOR_TYPE (SensorType) VALUES ('Temperature')
 
-INSERT PRODUCER (CompanyName) VALUES ('Adafruit')
-INSERT PRODUCER (CompanyName) VALUES ('Vishay')
-INSERT PRODUCER (CompanyName) VALUES ('Everlight Electronics')
-
 INSERT DAQ_CHANNEL (ChanIdentifier, InputChannel) VALUES ('Dev1/ai0', 1)
 INSERT DAQ_CHANNEL (ChanIdentifier, InputChannel) VALUES ('Dev1/ai1', 1)
 INSERT DAQ_CHANNEL (ChanIdentifier, InputChannel) VALUES ('Dev1/ai2', 1)
@@ -28,9 +24,9 @@ INSERT DAQ_CHANNEL (ChanIdentifier, InputChannel) VALUES ('Dev1/port5', 0)
 INSERT DAQ_CHANNEL (ChanIdentifier, InputChannel) VALUES ('Dev1/port6', 0)
 INSERT DAQ_CHANNEL (ChanIdentifier, InputChannel) VALUES ('Dev1/port7', 0)
 
-INSERT SENSOR (SensorID, Modell, SensorType, Producer, VoltageRating, MeasureFrequency, ChanIdentifier) VALUES (0, 'ALS-PT333-3C/L177', 'Light level', 'Everlight Electronics', 5.0, 60000, 'Dev1/ai0')
-INSERT SENSOR (SensorID, Modell, SensorType, Producer, VoltageRating, MeasureFrequency, ChanIdentifier) VALUES (1, '165 - TMP36', 'Temperature', 'Adafruit', 5.0, 300000, 'Dev1/ai1')
---INSERT SENSOR (SensorID, Modell, SensorType, Producer, VoltageRating, MeasureFrequency, ChanIdentifier) VALUES (2, 'NTCLE100E3103JB0', 'Temperature', 'Vishay', 5.0, '00.05.00.00', 'Dev1/ai2')
+INSERT SENSOR (SensorID, SensorType, VoltageRating, MeasureFrequency, ChanIdentifier) VALUES (0, 'Light level', 5.0, 60000, 'Dev1/ai0')
+INSERT SENSOR (SensorID, SensorType, VoltageRating, MeasureFrequency, ChanIdentifier) VALUES (1, 'Temperature', 5.0, 300000, 'Dev1/ai1')
+--INSERT SENSOR (SensorID, SensorType, VoltageRating, MeasureFrequency, ChanIdentifier) VALUES (2, 'Temperature', 5.0, '00.05.00.00', 'Dev1/ai2')
 
 INSERT THRESHOLD_VALUE (Threshold, SensorID, MaxThreshold, MinThreshold) VALUES (2.0, 0, 0, 1)
 INSERT THRESHOLD_VALUE (Threshold, SensorID, MaxThreshold, MinThreshold) VALUES (3.0, 0, 0, 0)

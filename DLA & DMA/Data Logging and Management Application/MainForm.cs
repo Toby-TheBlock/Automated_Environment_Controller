@@ -28,18 +28,33 @@ namespace Data_Logging_and_Management_Application
 
             if (btn.Text.Contains("Start"))
             {    
-                btnStopDL.Enabled = true; 
+                btnStopDL.Enabled = true;
+                btnMeasurementNow.Enabled = true;
             }
             else
             {
                 btnStartDL.Enabled = true;
+                btnMeasurementNow.Enabled = false;
             }
             
         }
 
+        private void ReadyManagementComboBoxes()
+        {
+            List<Dictionary<string, string>> sensorData = Sensor.GetStoredSensorInformation();
+
+            foreach (Dictionary<string, string> el in sensorData)
+            {
+                cboSensors.Items.Add(el["SensorType"].Trim() + " " + el["SensorID"]);
+            }
+
+            cboSensors.SelectedIndex = 0;
+            cboSqlOperation.SelectedIndex = 0;
+        }
+
         private void ReadyCollectionPanels(bool panelStatus)
         {
-            foreach(Control element in DataLogging.Controls.OfType<Panel>())
+            foreach (Control element in DataLogging.Controls.OfType<Panel>())
             {
                 element.Controls.Clear();
                 element.Visible = panelStatus;
@@ -76,19 +91,72 @@ namespace Data_Logging_and_Management_Application
             }
         }
 
+        /// <summary>
+        /// Creates all of the needed labels and textboxes needed to perform standard SQL SELECT, INSERT and DELETE queries.
+        /// All of the controls are being added to the main panel. 
+        /// </summary>
+        /// <param name="rows">A list containing information about all of the table rows and columns.</param>
+        private void CreateLabelAndInput(List<Dictionary<string, string>> rows)
+        {
+            int Xcoord = 10;
+
+            foreach (Dictionary<string, string> row in rows)
+            {
+                string columnName = "";
+                string lableText = "";
+                string charMaxLength = "";
+
+                foreach (KeyValuePair<string, string> entry in row)
+                {
+                    switch (entry.Key)
+                    {
+                        case "COLUMN_NAME":
+                            columnName = entry.Value;
+                            break;
+
+                        case "IS_NULLABLE":
+                            lableText = entry.Value == "NO" ? "* " + columnName + " :" : columnName + " :";
+                            break;
+
+                        case "CHARACTER_MAXIMUM_LENGTH":
+                            charMaxLength = entry.Value.Length <= 1 ? "1000" : entry.Value;
+                            break;
+                    }
+                }
+
+                Label newLabel = new Label()
+                {
+                    Name = "lblInput" + columnName,
+                    Tag = charMaxLength,
+                    Location = new Point(Xcoord, 220),
+                    Size = new Size(100, 25),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Text = lableText
+                };
+
+                TextBox newTextBox = new TextBox()
+                {
+                    Name = "Input" + columnName,
+                    Size = new Size(100, 25),
+                    Location = new Point(Xcoord, 250),
+                };
+
+                //newTextBox.TextChanged += BlockTextBoxAccess;
+                //newTextBox.TextChanged += ToggleButtonStatus;
+                tabControl.TabPages["DataManagement"].Controls.Add(newLabel);
+                tabControl.TabPages["DataManagement"].Controls.Add(newTextBox);
+                Xcoord += 115;
+            }
+        }
+
+
         private void btnStartDL_Click(object sender, EventArgs e)
         {
             ChangeBtnAccess(sender);
 
-            Dictionary<string, string> parameters = new Dictionary<string, string>()
-            {
-                { "TableName", "SENSOR" },
-                { "NumberOfRows", "100" }
-            };
+            List<Dictionary<string, string>> sensorData = Sensor.GetStoredSensorInformation();
 
-            List<Dictionary<string, string>> sensorData = dbm.ConvertDataTableToDictionary(dbm.CallProcedureWithReturn(dbm.DbName, "SelectAllFromTable", parameters));
-
-            foreach(Dictionary<string, string> el in sensorData)
+            foreach (Dictionary<string, string> el in sensorData)
             {
                 Sensor newSensor;
 
@@ -110,10 +178,28 @@ namespace Data_Logging_and_Management_Application
         private void btnStopDL_Click(object sender, EventArgs e)
         {
             ChangeBtnAccess(sender);
-
             Sensor.allSensors.Clear();
-
             ReadyCollectionPanels(false);
+        }
+
+        private void btnMeasurementNow_Click(object sender, EventArgs e)
+        {
+            foreach (Sensor s in Sensor.allSensors)
+            {
+                s.GetData();
+            }
+
+            ReadyCollectionPanels(true);
+        }
+
+        private void tabControl_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            ReadyManagementComboBoxes();
+
+            DataTable rawData = dbm.CallProcedureWithReturn(dbm.DbName, "GetTableInfo", new Dictionary<string, string>() { { "TableName", "SENSOR" } });
+            List<Dictionary<string, string>> data = dbm.ConvertDataTableToDictionary(rawData);
+
+            CreateLabelAndInput(data);
         }
     }
 }

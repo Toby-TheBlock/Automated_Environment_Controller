@@ -9,10 +9,10 @@ namespace Data_Logging_and_Management_Application
         public LightSensor(int sensorID, string modell, string producer, float voltageRating, int measureFrequency, string chanIdentifier)
         : base(sensorID, modell, producer, voltageRating, measureFrequency, chanIdentifier)
         {
-            StartMeasuring();
+            
         }
 
-        protected override void GetData(Object source, ElapsedEventArgs e)
+        public override void GetData()
         {
             float rawVoltage = GetVoltageValue(ChanIdentifier, "lightSensorChannel", 0.0, VoltageRating);
 

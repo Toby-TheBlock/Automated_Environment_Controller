@@ -46,12 +46,6 @@ namespace Data_Logging_and_Management_Application
             get { return chanIdentifier; }
         }
 
-        protected Timer MeasuringTimer
-        {
-            get { return measuringTimer; }
-            set { measuringTimer = value; }
-        }
-
         public Sensor(int sensorID, string modell, string producer, float voltageRating, int measureFrequency, string chanIdentifier)
         {
             this.sensorID = sensorID;
@@ -61,10 +55,25 @@ namespace Data_Logging_and_Management_Application
             this.measureFrequency = measureFrequency;
             this.chanIdentifier = chanIdentifier;
 
+            measuringTimer = new Timer(measureFrequency);
+            measuringTimer.Elapsed += RunMeasurements;
+            measuringTimer.Enabled = true;
+
             Dictionary<string, string> parameters = new Dictionary<string, string>() { { "SensorID", sensorID.ToString() } };
             string data = dbm.ConvertDataTableToDictionary(dbm.CallProcedureWithReturn(dbm.DbName, "GetLastDatasample", parameters))[0]["Timestamp"];
 
             lastMeasurement = data.Length > 0 ? data : "N/A";
+        }
+
+        public static List<Dictionary<string, string>> GetStoredSensorInformation()
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>()
+            {
+                { "TableName", "SENSOR" },
+                { "NumberOfRows", "100" }
+            };
+
+            return dbm.ConvertDataTableToDictionary(dbm.CallProcedureWithReturn(dbm.DbName, "SelectAllFromTable", parameters));
         }
 
         public string GetNextMeasuringTimestamp()
@@ -73,15 +82,12 @@ namespace Data_Logging_and_Management_Application
         }
 
 
-        protected void StartMeasuring()
+        protected void RunMeasurements(Object source, ElapsedEventArgs e)
         {
-            MeasuringTimer = new Timer(MeasureFrequency);
-            MeasuringTimer.Elapsed += GetData;
-            MeasuringTimer.Enabled = true;
+            GetData();
         }
 
-        protected abstract void GetData(Object source, ElapsedEventArgs e);
-
+        public virtual void GetData() {}
         
         protected void UploadData(string data)
         {
