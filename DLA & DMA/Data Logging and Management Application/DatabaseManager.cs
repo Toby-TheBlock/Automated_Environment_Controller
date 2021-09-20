@@ -126,6 +126,23 @@ namespace Data_Logging_and_Management_Application
             return data;
         }
 
+        public DataTable CallProcedureWithReturn(string databaseName, string procedureName)
+        {
+            SqlConnection conn = OpenDatabaseConnection(databaseName);
+            SqlCommand cmd = new SqlCommand(procedureName, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            conn.Open();
+
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable data = new DataTable();
+            adapter.Fill(data);
+
+            conn.Close();
+
+            return data;
+        }
+
 
         /// <summary>
         /// Takes a datatable and converts each row to a dictionary with entries where the key is the column-name,
@@ -142,13 +159,27 @@ namespace Data_Logging_and_Management_Application
                 Dictionary<string, string> dictRow = new Dictionary<string, string>();
                 foreach (DataColumn col in dataTable.Columns)
                 {
-                    dictRow.Add(col.ColumnName, row[col].ToString());
+                    dictRow.Add(col.ColumnName, row[col].ToString().Trim());
                 }
 
                 result.Add(dictRow);
             }
 
             return result;
+        }
+
+        public List<string> GetTableInformation()
+        {
+            List<Dictionary<string, string>> result = ConvertDataTableToDictionary(CallProcedureWithReturn(DbName, "GetAllTableNames"));
+
+            List<string> values = new List<string>();
+
+            foreach (Dictionary<string, string> el in result)
+            {
+                values.Add(el["TableName"]);
+            }
+
+            return values;
         }
 
 

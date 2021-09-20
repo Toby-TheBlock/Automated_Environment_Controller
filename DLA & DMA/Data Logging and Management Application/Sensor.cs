@@ -12,8 +12,6 @@ namespace Data_Logging_and_Management_Application
         protected static DatabaseManager dbm = DatabaseManager.Singleton;
 
         private int sensorID;
-        private string modell;
-        private string producer;
         private float voltageRating;
         private int measureFrequency;
         private string chanIdentifier;
@@ -46,11 +44,9 @@ namespace Data_Logging_and_Management_Application
             get { return chanIdentifier; }
         }
 
-        public Sensor(int sensorID, string modell, string producer, float voltageRating, int measureFrequency, string chanIdentifier)
+        public Sensor(int sensorID, float voltageRating, int measureFrequency, string chanIdentifier)
         {
             this.sensorID = sensorID;
-            this.modell = modell;
-            this.producer = producer;
             this.voltageRating = voltageRating;
             this.measureFrequency = measureFrequency;
             this.chanIdentifier = chanIdentifier;

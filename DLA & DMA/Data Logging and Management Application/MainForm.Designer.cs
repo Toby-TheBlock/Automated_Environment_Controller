@@ -29,6 +29,7 @@ namespace Data_Logging_and_Management_Application
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.DataLogging = new System.Windows.Forms.TabPage();
             this.lblNextMeasurement = new System.Windows.Forms.Label();
@@ -39,16 +40,18 @@ namespace Data_Logging_and_Management_Application
             this.pnlLastMeasurement = new System.Windows.Forms.Panel();
             this.btnStopDL = new System.Windows.Forms.Button();
             this.DataManagement = new System.Windows.Forms.TabPage();
-            this.btnRunQuery = new System.Windows.Forms.Button();
-            this.cboSensors = new System.Windows.Forms.ComboBox();
-            this.lblSensorCbo = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.cboSqlOperation = new System.Windows.Forms.ComboBox();
+            this.btnGet = new System.Windows.Forms.Button();
+            this.lblDbTables = new System.Windows.Forms.Label();
+            this.cboDbTables = new System.Windows.Forms.ComboBox();
             this.lblSqlOperation = new System.Windows.Forms.Label();
+            this.cboSqlOperation = new System.Windows.Forms.ComboBox();
+            this.dgvMainWindow = new System.Windows.Forms.DataGridView();
+            this.btnSubmit = new System.Windows.Forms.Button();
+            this.pnlTxtBoxes = new System.Windows.Forms.Panel();
             this.tabControl.SuspendLayout();
             this.DataLogging.SuspendLayout();
             this.DataManagement.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMainWindow)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -56,12 +59,11 @@ namespace Data_Logging_and_Management_Application
             this.tabControl.Controls.Add(this.DataLogging);
             this.tabControl.Controls.Add(this.DataManagement);
             this.tabControl.Location = new System.Drawing.Point(0, 0);
-            this.tabControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(800, 452);
+            this.tabControl.Size = new System.Drawing.Size(1140, 452);
             this.tabControl.TabIndex = 0;
-            this.tabControl.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl_Selecting);
             // 
             // DataLogging
             // 
@@ -73,10 +75,10 @@ namespace Data_Logging_and_Management_Application
             this.DataLogging.Controls.Add(this.pnlLastMeasurement);
             this.DataLogging.Controls.Add(this.btnStopDL);
             this.DataLogging.Location = new System.Drawing.Point(4, 25);
-            this.DataLogging.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DataLogging.Margin = new System.Windows.Forms.Padding(4);
             this.DataLogging.Name = "DataLogging";
-            this.DataLogging.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.DataLogging.Size = new System.Drawing.Size(792, 423);
+            this.DataLogging.Padding = new System.Windows.Forms.Padding(4);
+            this.DataLogging.Size = new System.Drawing.Size(1132, 423);
             this.DataLogging.TabIndex = 0;
             this.DataLogging.Text = "Data Logging";
             this.DataLogging.UseVisualStyleBackColor = true;
@@ -105,7 +107,7 @@ namespace Data_Logging_and_Management_Application
             // 
             this.btnMeasurementNow.Enabled = false;
             this.btnMeasurementNow.Location = new System.Drawing.Point(404, 21);
-            this.btnMeasurementNow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMeasurementNow.Margin = new System.Windows.Forms.Padding(4);
             this.btnMeasurementNow.Name = "btnMeasurementNow";
             this.btnMeasurementNow.Size = new System.Drawing.Size(179, 28);
             this.btnMeasurementNow.TabIndex = 8;
@@ -116,7 +118,7 @@ namespace Data_Logging_and_Management_Application
             // btnStartDL
             // 
             this.btnStartDL.Location = new System.Drawing.Point(19, 21);
-            this.btnStartDL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnStartDL.Margin = new System.Windows.Forms.Padding(4);
             this.btnStartDL.Name = "btnStartDL";
             this.btnStartDL.Size = new System.Drawing.Size(179, 28);
             this.btnStartDL.TabIndex = 0;
@@ -128,7 +130,7 @@ namespace Data_Logging_and_Management_Application
             // 
             this.pnlNextMeasurement.AccessibleName = "next";
             this.pnlNextMeasurement.Location = new System.Drawing.Point(404, 95);
-            this.pnlNextMeasurement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlNextMeasurement.Margin = new System.Windows.Forms.Padding(4);
             this.pnlNextMeasurement.Name = "pnlNextMeasurement";
             this.pnlNextMeasurement.Size = new System.Drawing.Size(365, 110);
             this.pnlNextMeasurement.TabIndex = 7;
@@ -138,7 +140,7 @@ namespace Data_Logging_and_Management_Application
             // 
             this.pnlLastMeasurement.AccessibleName = "last";
             this.pnlLastMeasurement.Location = new System.Drawing.Point(19, 95);
-            this.pnlLastMeasurement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlLastMeasurement.Margin = new System.Windows.Forms.Padding(4);
             this.pnlLastMeasurement.Name = "pnlLastMeasurement";
             this.pnlLastMeasurement.Size = new System.Drawing.Size(365, 110);
             this.pnlLastMeasurement.TabIndex = 6;
@@ -148,7 +150,7 @@ namespace Data_Logging_and_Management_Application
             // 
             this.btnStopDL.Enabled = false;
             this.btnStopDL.Location = new System.Drawing.Point(205, 21);
-            this.btnStopDL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnStopDL.Margin = new System.Windows.Forms.Padding(4);
             this.btnStopDL.Name = "btnStopDL";
             this.btnStopDL.Size = new System.Drawing.Size(179, 28);
             this.btnStopDL.TabIndex = 1;
@@ -158,56 +160,59 @@ namespace Data_Logging_and_Management_Application
             // 
             // DataManagement
             // 
+            this.DataManagement.Controls.Add(this.pnlTxtBoxes);
+            this.DataManagement.Controls.Add(this.btnGet);
+            this.DataManagement.Controls.Add(this.lblDbTables);
+            this.DataManagement.Controls.Add(this.cboDbTables);
             this.DataManagement.Controls.Add(this.lblSqlOperation);
             this.DataManagement.Controls.Add(this.cboSqlOperation);
-            this.DataManagement.Controls.Add(this.dataGridView1);
-            this.DataManagement.Controls.Add(this.lblSensorCbo);
-            this.DataManagement.Controls.Add(this.cboSensors);
-            this.DataManagement.Controls.Add(this.btnRunQuery);
+            this.DataManagement.Controls.Add(this.dgvMainWindow);
+            this.DataManagement.Controls.Add(this.btnSubmit);
             this.DataManagement.Location = new System.Drawing.Point(4, 25);
-            this.DataManagement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DataManagement.Margin = new System.Windows.Forms.Padding(4);
             this.DataManagement.Name = "DataManagement";
-            this.DataManagement.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.DataManagement.Size = new System.Drawing.Size(792, 423);
+            this.DataManagement.Padding = new System.Windows.Forms.Padding(4);
+            this.DataManagement.Size = new System.Drawing.Size(1132, 423);
             this.DataManagement.TabIndex = 1;
             this.DataManagement.Text = "Data Management";
             this.DataManagement.UseVisualStyleBackColor = true;
             // 
-            // btnRunQuery
+            // btnGet
             // 
-            this.btnRunQuery.Location = new System.Drawing.Point(626, 385);
-            this.btnRunQuery.Name = "btnRunQuery";
-            this.btnRunQuery.Size = new System.Drawing.Size(144, 28);
-            this.btnRunQuery.TabIndex = 0;
-            this.btnRunQuery.Text = "Run Query";
-            this.btnRunQuery.UseVisualStyleBackColor = true;
+            this.btnGet.Location = new System.Drawing.Point(765, 352);
+            this.btnGet.Name = "btnGet";
+            this.btnGet.Size = new System.Drawing.Size(162, 28);
+            this.btnGet.TabIndex = 8;
+            this.btnGet.Text = "Get Data";
+            this.btnGet.UseVisualStyleBackColor = true;
+            this.btnGet.Click += new System.EventHandler(this.btnGet_Click);
             // 
-            // cboSensors
+            // lblDbTables
             // 
-            this.cboSensors.FormattingEnabled = true;
-            this.cboSensors.Location = new System.Drawing.Point(20, 48);
-            this.cboSensors.Name = "cboSensors";
-            this.cboSensors.Size = new System.Drawing.Size(159, 24);
-            this.cboSensors.TabIndex = 1;
+            this.lblDbTables.AutoSize = true;
+            this.lblDbTables.Location = new System.Drawing.Point(39, 22);
+            this.lblDbTables.Name = "lblDbTables";
+            this.lblDbTables.Size = new System.Drawing.Size(103, 17);
+            this.lblDbTables.TabIndex = 7;
+            this.lblDbTables.Text = "Selected Table";
             // 
-            // lblSensorCbo
+            // cboDbTables
             // 
-            this.lblSensorCbo.AutoSize = true;
-            this.lblSensorCbo.Location = new System.Drawing.Point(22, 24);
-            this.lblSensorCbo.Name = "lblSensorCbo";
-            this.lblSensorCbo.Size = new System.Drawing.Size(121, 17);
-            this.lblSensorCbo.TabIndex = 2;
-            this.lblSensorCbo.Text = "Available Sensors";
+            this.cboDbTables.FormattingEnabled = true;
+            this.cboDbTables.Location = new System.Drawing.Point(20, 48);
+            this.cboDbTables.Name = "cboDbTables";
+            this.cboDbTables.Size = new System.Drawing.Size(142, 24);
+            this.cboDbTables.TabIndex = 6;
+            this.cboDbTables.SelectedIndexChanged += new System.EventHandler(this.cboDbTables_SelectedIndexChanged);
             // 
-            // dataGridView1
+            // lblSqlOperation
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(20, 78);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(750, 161);
-            this.dataGridView1.TabIndex = 3;
+            this.lblSqlOperation.AutoSize = true;
+            this.lblSqlOperation.Location = new System.Drawing.Point(186, 22);
+            this.lblSqlOperation.Name = "lblSqlOperation";
+            this.lblSqlOperation.Size = new System.Drawing.Size(103, 17);
+            this.lblSqlOperation.TabIndex = 5;
+            this.lblSqlOperation.Text = "SQL Operation";
             // 
             // cboSqlOperation
             // 
@@ -217,35 +222,55 @@ namespace Data_Logging_and_Management_Application
             "INSERT",
             "DELETE",
             "UPDATE"});
-            this.cboSqlOperation.Location = new System.Drawing.Point(194, 48);
+            this.cboSqlOperation.Location = new System.Drawing.Point(168, 48);
             this.cboSqlOperation.Name = "cboSqlOperation";
             this.cboSqlOperation.Size = new System.Drawing.Size(142, 24);
             this.cboSqlOperation.TabIndex = 4;
+            this.cboSqlOperation.SelectedIndexChanged += new System.EventHandler(this.cboSqlOperation_SelectedIndexChanged);
             // 
-            // lblSqlOperation
+            // dgvMainWindow
             // 
-            this.lblSqlOperation.AutoSize = true;
-            this.lblSqlOperation.Location = new System.Drawing.Point(191, 24);
-            this.lblSqlOperation.Name = "lblSqlOperation";
-            this.lblSqlOperation.Size = new System.Drawing.Size(104, 17);
-            this.lblSqlOperation.TabIndex = 5;
-            this.lblSqlOperation.Text = "SQL-Operation";
+            this.dgvMainWindow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMainWindow.Location = new System.Drawing.Point(20, 91);
+            this.dgvMainWindow.Name = "dgvMainWindow";
+            this.dgvMainWindow.RowHeadersWidth = 51;
+            this.dgvMainWindow.RowTemplate.Height = 24;
+            this.dgvMainWindow.Size = new System.Drawing.Size(1093, 151);
+            this.dgvMainWindow.TabIndex = 3;
+            // 
+            // btnSubmit
+            // 
+            this.btnSubmit.Location = new System.Drawing.Point(951, 352);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(162, 28);
+            this.btnSubmit.TabIndex = 0;
+            this.btnSubmit.Text = "Submit Data";
+            this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            // 
+            // pnlTxtBoxes
+            // 
+            this.pnlTxtBoxes.Location = new System.Drawing.Point(19, 259);
+            this.pnlTxtBoxes.Name = "pnlTxtBoxes";
+            this.pnlTxtBoxes.Size = new System.Drawing.Size(1093, 75);
+            this.pnlTxtBoxes.TabIndex = 9;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1143, 420);
             this.Controls.Add(this.tabControl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "Data Logging and Management";
             this.tabControl.ResumeLayout(false);
             this.DataLogging.ResumeLayout(false);
             this.DataLogging.PerformLayout();
             this.DataManagement.ResumeLayout(false);
             this.DataManagement.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMainWindow)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -262,12 +287,14 @@ namespace Data_Logging_and_Management_Application
         private System.Windows.Forms.Button btnMeasurementNow;
         private System.Windows.Forms.Label lblNextMeasurement;
         private System.Windows.Forms.Label lblLastMeasurement;
-        private System.Windows.Forms.Label lblSensorCbo;
-        private System.Windows.Forms.ComboBox cboSensors;
-        private System.Windows.Forms.Button btnRunQuery;
+        private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Label lblSqlOperation;
         private System.Windows.Forms.ComboBox cboSqlOperation;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvMainWindow;
+        private System.Windows.Forms.Label lblDbTables;
+        private System.Windows.Forms.ComboBox cboDbTables;
+        private System.Windows.Forms.Button btnGet;
+        private System.Windows.Forms.Panel pnlTxtBoxes;
     }
 }
 
