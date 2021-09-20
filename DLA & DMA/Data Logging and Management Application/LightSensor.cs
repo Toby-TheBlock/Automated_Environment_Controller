@@ -6,23 +6,31 @@ namespace Data_Logging_and_Management_Application
     class LightSensor : Sensor
     {
 
-        public LightSensor(int sensorID, string modell, string producer, float voltageRating, int measureFrequency, string chanIdentifier)
-        : base(sensorID, modell, producer, voltageRating, measureFrequency, chanIdentifier)
+        public LightSensor(int sensorID, float voltageRating, int measureFrequency, string chanIdentifier)
+        : base(sensorID, voltageRating, measureFrequency, chanIdentifier)
         {
-            StartMeasuring();
+            
         }
 
-        protected override void GetData(Object source, ElapsedEventArgs e)
+        public override void GetData()
         {
-            float rawVoltage = GetVoltageValue(ChanIdentifier, "lightSensorChannel", 0.0, VoltageRating);
+            try
+            {
+                float rawVoltage = GetVoltageValue(ChanIdentifier, "lightSensorChannel", 0.0, VoltageRating);
 
-            Console.WriteLine("The raw voltage over the light sensor is: " + rawVoltage);
+                Console.WriteLine("The raw voltage over the light sensor is: " + rawVoltage);
             
-            float lux = ConvertVoltageToLux(rawVoltage);
+                float lux = ConvertVoltageToLux(rawVoltage);
 
-            Console.WriteLine("This voltage is equivalent to: " + lux + " lumen per 1 m^2.");
+                Console.WriteLine("This voltage is equivalent to: " + lux + " lumen per 1 m^2.");
 
-            UploadData(lux.ToString());
+                UploadData(lux.ToString());
+            }
+            catch
+            {
+                throw new Exception("Couldn't run data-collection! Ensure that the DAQ is connected to the PC.");
+            }
+
         }
 
         private float ConvertVoltageToLux(float voltage)

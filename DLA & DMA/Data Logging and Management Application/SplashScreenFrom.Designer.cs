@@ -29,6 +29,7 @@ namespace Data_Logging_and_Management_Application
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreenForm));
             this.picLoadingIcon = new System.Windows.Forms.PictureBox();
             this.lblInfoText = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picLoadingIcon)).BeginInit();
@@ -38,9 +39,9 @@ namespace Data_Logging_and_Management_Application
             // 
             this.picLoadingIcon.BackColor = System.Drawing.Color.White;
             this.picLoadingIcon.Location = new System.Drawing.Point(-1, -2);
-            this.picLoadingIcon.Margin = new System.Windows.Forms.Padding(2);
+            this.picLoadingIcon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.picLoadingIcon.Name = "picLoadingIcon";
-            this.picLoadingIcon.Size = new System.Drawing.Size(326, 329);
+            this.picLoadingIcon.Size = new System.Drawing.Size(435, 405);
             this.picLoadingIcon.TabIndex = 0;
             this.picLoadingIcon.TabStop = false;
             this.picLoadingIcon.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
@@ -49,21 +50,21 @@ namespace Data_Logging_and_Management_Application
             // 
             this.lblInfoText.AutoSize = true;
             this.lblInfoText.BackColor = System.Drawing.Color.White;
-            this.lblInfoText.Location = new System.Drawing.Point(82, 89);
-            this.lblInfoText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblInfoText.Location = new System.Drawing.Point(109, 110);
             this.lblInfoText.Name = "lblInfoText";
-            this.lblInfoText.Size = new System.Drawing.Size(0, 13);
+            this.lblInfoText.Size = new System.Drawing.Size(0, 17);
             this.lblInfoText.TabIndex = 1;
             // 
             // SplashScreenForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 327);
+            this.ClientSize = new System.Drawing.Size(432, 402);
             this.Controls.Add(this.lblInfoText);
             this.Controls.Add(this.picLoadingIcon);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "SplashScreenForm";
             this.Text = "Configuration";

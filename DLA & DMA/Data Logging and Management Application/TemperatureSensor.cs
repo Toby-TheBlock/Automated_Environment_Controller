@@ -6,23 +6,33 @@ namespace Data_Logging_and_Management_Application
     class TemperatureSensor : Sensor
     {
 
-        public TemperatureSensor(int sensorID, string modell, string producer, float voltageRating, int measureFrequency, string chanIdentifier)
-        : base(sensorID, modell, producer, voltageRating, measureFrequency, chanIdentifier)
+        public TemperatureSensor(int sensorID, float voltageRating, int measureFrequency, string chanIdentifier)
+        : base(sensorID, voltageRating, measureFrequency, chanIdentifier)
         {
-            StartMeasuring();
+
         }
 
-        protected override void GetData(Object source, ElapsedEventArgs e)
+        public override void GetData()
         {
-            float rawVoltage = GetVoltageValue(ChanIdentifier, "lightSensorChannel", 0.0, VoltageRating);
+            try
+            {
+                Console.WriteLine("test2");
 
-            Console.WriteLine("The raw voltage over the light sensor is: " + rawVoltage);
+                float rawVoltage = GetVoltageValue(ChanIdentifier, "lightSensorChannel", 0.0, VoltageRating);
 
-            float temp = ConvertVoltageToTemp(rawVoltage);
+                Console.WriteLine("The raw voltage over the light sensor is: " + rawVoltage);
 
-            Console.WriteLine("This voltage is equivalent to: " + temp + " lumen per 1 m^2.");
+                float temp = ConvertVoltageToTemp(rawVoltage);
 
-            UploadData(temp.ToString());
+                Console.WriteLine("This voltage is equivalent to: " + temp + " lumen per 1 m^2.");
+
+                UploadData(temp.ToString());
+            }
+            catch
+            {
+                throw new Exception("Couldn't run data-collection! Ensure that the DAQ is connected to the PC.");
+            }
+            
         }
 
         private float ConvertVoltageToTemp(float voltage)
