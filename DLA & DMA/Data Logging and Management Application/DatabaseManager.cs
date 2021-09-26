@@ -64,8 +64,9 @@ namespace Data_Logging_and_Management_Application
                 conn.Close();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
 

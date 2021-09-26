@@ -11,13 +11,14 @@ namespace Data_Logging_and_Management_Application
     {
         private DatabaseManager dbm = DatabaseManager.Singleton;
         private Dictionary<string, string> selectParametersForEntryToUpdate;
+        private LED dataLoggingLED;
+
 
         public MainForm()
         {
             InitializeComponent();
             TopMost = true;
             Activate();
-            ReadyManagementComboBoxes();
         }
 
         private void ChangeBtnAccess(object button)
@@ -125,7 +126,7 @@ namespace Data_Logging_and_Management_Application
                         {
                             TextAlign = HorizontalAlignment.Left,
                             BorderStyle = BorderStyle.None,
-                            Text = element.AccessibleName.Contains("last") ? s.LastMeasurement : s.GetNextMeasuringTimestamp(),
+                            Text = element.AccessibleName.Contains("last") ? s.LastMeasurementTimestamp : s.GetNextMeasuringTimestamp(),
                             Size = new Size(160, 15),
                             Location = new Point(defLoc.X + 115, defLoc.Y)
                         };
@@ -458,11 +459,15 @@ namespace Data_Logging_and_Management_Application
 
         private void btnStartDL_Click(object sender, EventArgs e)
         {
+            if (dataLoggingLED == null)
+            {
+                dataLoggingLED = new LED(0, "Dev1/port0/line0", true);
+            }
+
+            dataLoggingLED.StartNewOutputThread();
             ChangeBtnAccess(sender);
 
-            List<Dictionary<string, string>> sensorData = Sensor.GetStoredSensorInformation();
-
-            foreach (Dictionary<string, string> el in sensorData)
+            foreach (Dictionary<string, string> el in Sensor.GetStoredSensorInformation())
             {
                 Sensor newSensor;
 
@@ -478,12 +483,23 @@ namespace Data_Logging_and_Management_Application
                 Sensor.allSensors.Add(newSensor);
             }
 
+            foreach (Dictionary<string, string> el in LED.GetStoredLEDInformation())
+            {
+                LED newLED = new LED(int.Parse(el["LED_ID"]), el["ChanIdentifier"]);
+                newLED.StartNewOutputThread();
+
+                LED.allLEDs.Add(newLED);
+            }
+
             ReadyDataLoggingTab(true);
         }
 
         private void btnStopDL_Click(object sender, EventArgs e)
         {
+            dataLoggingLED.TerminateOutputThread();
+
             ChangeBtnAccess(sender);
+            LED.allLEDs.Clear();
             Sensor.allSensors.Clear();
             ReadyDataLoggingTab(false);
         }
@@ -524,6 +540,11 @@ namespace Data_Logging_and_Management_Application
         private void cboDbTables_SelectedIndexChanged(object sender, EventArgs e)
         {
             ReadyDataManagementTab(sender, e);
+        }
+
+        private void tabControl_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            ReadyManagementComboBoxes();
         }
     }
 }

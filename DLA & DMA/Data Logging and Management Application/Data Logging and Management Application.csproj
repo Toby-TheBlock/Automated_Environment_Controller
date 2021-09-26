@@ -33,9 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NationalInstruments.DAQmx, Version=21.0.45.49311, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=x86">
+    <Reference Include="NationalInstruments.DAQmx, Version=20.7.45.49302, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\National Instruments\MeasurementStudioVS2012\DotNET\Assemblies (64-bit)\Current\NationalInstruments.DAQmx.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\National Instruments\MeasurementStudioVS2012\DotNET\Assemblies (64-bit)\20.7.45.49302\NationalInstruments.DAQmx.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -71,6 +71,8 @@
   <ItemGroup>
     <Compile Include="Circle.cs" />
     <Compile Include="DatabaseManager.cs" />
+    <Compile Include="IDaqOutput.cs" />
+    <Compile Include="LED.cs" />
     <Compile Include="LightSensor.cs" />
     <Compile Include="LoadingIcon.cs" />
     <Compile Include="MainForm.cs">
@@ -104,6 +106,7 @@
     <EmbeddedResource Include="SplashScreenFrom.resx">
       <DependentUpon>SplashScreenFrom.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

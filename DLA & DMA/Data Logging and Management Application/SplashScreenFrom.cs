@@ -43,8 +43,8 @@ namespace Data_Logging_and_Management_Application
                     break;
 
                 case 2:
-                    UpdateInfoText(connStatus);
                     Thread.Sleep(2000);
+                    UpdateInfoText(connStatus);
 
                     if (!await dbm.ConfigureDatabase())
                     {

@@ -16,16 +16,22 @@ namespace Data_Logging_and_Management_Application
         private int measureFrequency;
         private string chanIdentifier;
         private Timer measuringTimer;
-        private string lastMeasurement;
+        private string lastMeasurementTimestamp;
+        protected float lastMeasurementValue;
 
         public int SensorID 
         {
             get { return sensorID; } 
         }
 
-        public string LastMeasurement
+        public string LastMeasurementTimestamp
         {
-            get { return lastMeasurement; }
+            get { return lastMeasurementTimestamp; }
+        }
+
+        public float LastMeasurementValue
+        {
+            get { return lastMeasurementValue; }
         }
 
         protected float VoltageRating 
@@ -58,7 +64,7 @@ namespace Data_Logging_and_Management_Application
             Dictionary<string, string> parameters = new Dictionary<string, string>() { { "SensorID", sensorID.ToString() } };
             string data = dbm.ConvertDataTableToDictionary(dbm.CallProcedureWithReturn(dbm.DbName, "GetLastDatasample", parameters))[0]["Timestamp"];
 
-            lastMeasurement = data.Length > 0 ? data : "N/A";
+            lastMeasurementTimestamp = data.Length > 0 ? data : "N/A";
         }
 
         public static List<Dictionary<string, string>> GetStoredSensorInformation()
@@ -74,7 +80,7 @@ namespace Data_Logging_and_Management_Application
 
         public string GetNextMeasuringTimestamp()
         {
-            return !lastMeasurement.Contains("N/A") ? Convert.ToDateTime(lastMeasurement).AddSeconds(measureFrequency).ToString() : lastMeasurement;
+            return !lastMeasurementTimestamp.Contains("N/A") ? Convert.ToDateTime(lastMeasurementTimestamp).AddSeconds(measureFrequency).ToString() : lastMeasurementTimestamp;
         }
 
 
@@ -87,13 +93,13 @@ namespace Data_Logging_and_Management_Application
         
         protected void UploadData(string data)
         {
-            lastMeasurement = DateTime.Now.ToString();
+            lastMeasurementTimestamp = DateTime.Now.ToString();
 
             Dictionary<string, string> parameters = new Dictionary<string, string>() 
             { 
                 { "TableName", "DATA" }, 
                 { "ColumnName1", "Timestamp" },
-                { "Value1", lastMeasurement},
+                { "Value1", lastMeasurementTimestamp},
                 { "ColumnName2", "Value" },
                 { "Value2", data},
                 { "ColumnName3", "SensorID" },
@@ -109,6 +115,8 @@ namespace Data_Logging_and_Management_Application
             analogInTask.AIChannels.CreateVoltageChannel(pChanName, gChanName, AITerminalConfiguration.Rse, minVolt, maxVolt, AIVoltageUnits.Volts);
             AnalogSingleChannelReader reader = new AnalogSingleChannelReader(analogInTask.Stream);
             double daqValue = reader.ReadSingleSample();
+
+            analogInTask.Stop();
 
             return (float) daqValue;
         }

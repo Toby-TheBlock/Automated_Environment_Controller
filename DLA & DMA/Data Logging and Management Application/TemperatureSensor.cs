@@ -16,17 +16,15 @@ namespace Data_Logging_and_Management_Application
         {
             try
             {
-                Console.WriteLine("test2");
+                float rawVoltage = GetVoltageValue(ChanIdentifier, "tempSensorChannel", 0.0, VoltageRating);
 
-                float rawVoltage = GetVoltageValue(ChanIdentifier, "lightSensorChannel", 0.0, VoltageRating);
+                Console.WriteLine("The raw voltage over the temperature sensor is: " + rawVoltage);
 
-                Console.WriteLine("The raw voltage over the light sensor is: " + rawVoltage);
+                lastMeasurementValue = ConvertVoltageToTemp(rawVoltage);
 
-                float temp = ConvertVoltageToTemp(rawVoltage);
+                Console.WriteLine("This voltage is equivalent to: " + lastMeasurementValue + " degrees celcius.");
 
-                Console.WriteLine("This voltage is equivalent to: " + temp + " lumen per 1 m^2.");
-
-                UploadData(temp.ToString());
+                //UploadData(temp.ToString());
             }
             catch
             {

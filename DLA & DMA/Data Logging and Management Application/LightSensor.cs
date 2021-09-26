@@ -20,11 +20,11 @@ namespace Data_Logging_and_Management_Application
 
                 Console.WriteLine("The raw voltage over the light sensor is: " + rawVoltage);
             
-                float lux = ConvertVoltageToLux(rawVoltage);
+                lastMeasurementValue = ConvertVoltageToLux(rawVoltage);
 
-                Console.WriteLine("This voltage is equivalent to: " + lux + " lumen per 1 m^2.");
+                Console.WriteLine("This voltage is equivalent to: " + lastMeasurementValue + " lumen per 1 m^2.");
 
-                UploadData(lux.ToString());
+                //UploadData(lux.ToString());
             }
             catch
             {
