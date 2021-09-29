@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data_Logging_and_Management_Application
 {
-    class LED : IDaqOutput
+    class LED : IDaqDigitalOutput
     {
         public static List<LED> allLEDs = new List<LED>();
         private static DatabaseManager dbm = DatabaseManager.Singleton;
@@ -16,7 +16,8 @@ namespace Data_Logging_and_Management_Application
         private bool flashingLED;
         private Timer channelThread; 
 
-        public string OutputPort { get; set; }
+        public string ChannelIdentifier { get; set; }
+
         public bool StateOfLED { set { stateOfLED = value; } }
 
         public LED(int LED_ID, string chanIdentifier, bool flashingState = false)
@@ -24,7 +25,7 @@ namespace Data_Logging_and_Management_Application
             this.LED_ID = LED_ID;
             stateOfLED = false;
             flashingLED = flashingState;
-            OutputPort = chanIdentifier;
+            ChannelIdentifier = chanIdentifier;
         }
 
         public static List<Dictionary<string, string>> GetStoredLEDInformation()
@@ -38,13 +39,40 @@ namespace Data_Logging_and_Management_Application
             return dbm.ConvertDataTableToDictionary(dbm.CallProcedureWithReturn(dbm.DbName, "SelectAllFromTable", parameters));
         }
 
+        private void UpdateStoredLEDState(bool newLEDState)
+        {
+            foreach (Dictionary<string, string> el in GetStoredLEDInformation())
+            {
+                if (int.Parse(el["LED_ID"]) == LED_ID)
+                {
+                    Dictionary<string, string> updateParameters = new Dictionary<string, string>()
+                                {
+                                    { "TableName", "LED" },
+                                    { "ColumnName1", "LED_ID" },
+                                    { "Value1", el["LED_ID"] },
+                                    { "ColumnName2", "Description" },
+                                    { "Value2", el["Description"] },
+                                    { "ColumnName3", "State" },
+                                    { "Value3", newLEDState.ToString() },
+                                    { "ColumnName4", "Color" },
+                                    { "Value4", el["Color"] },
+                                    { "ColumnName5", "ChanIdentifier" },
+                                    { "Value5", el["ChanIdentifier"] }
+                                };
+
+                    dbm.CallProcedureWithoutReturn(dbm.DbName, "UpdateEntry5Columns", updateParameters);
+                }
+            }
+        }
+
+
         public void SetOutputPortState()
         {
             try
             {
                 NationalInstruments.DAQmx.Task digitalOutTask = new NationalInstruments.DAQmx.Task();
 
-                digitalOutTask.DOChannels.CreateChannel(OutputPort, "LED" + LED_ID + "Channel", ChannelLineGrouping.OneChannelForEachLine);
+                digitalOutTask.DOChannels.CreateChannel(ChannelIdentifier, "LED" + LED_ID + "Channel", ChannelLineGrouping.OneChannelForEachLine);
                 digitalOutTask.Control(TaskAction.Verify);
 
                 DigitalSingleChannelWriter writer = new DigitalSingleChannelWriter(digitalOutTask.Stream);
@@ -58,7 +86,7 @@ namespace Data_Logging_and_Management_Application
         }
 
 
-        public void StartNewOutputThread()
+        public void StartNewChannelThread()
         {
             channelThread = new Timer(500);
             channelThread.Elapsed += LEDLightningState;
@@ -67,7 +95,7 @@ namespace Data_Logging_and_Management_Application
         }
 
 
-        public void TerminateOutputThread()
+        public void TerminateChannelThread()
         {
             channelThread.Stop();
             channelThread.Dispose();
@@ -79,11 +107,13 @@ namespace Data_Logging_and_Management_Application
 
         private async void LEDLightningState(Object source, ElapsedEventArgs e)
         {
-            //await CheckThresholds();
-
             if (flashingLED)
             {
                 stateOfLED = stateOfLED ? false : true;
+            } 
+            else
+            {
+                stateOfLED = await CheckThresholds();
             }
 
             SetOutputPortState();
@@ -99,6 +129,7 @@ namespace Data_Logging_and_Management_Application
                 { "SearchData", LED_ID.ToString() }
             };
 
+            bool newState = false;
             List<Dictionary<string, string>> thresholdValues = dbm.ConvertDataTableToDictionary(dbm.CallProcedureWithReturn(dbm.DbName, "SelectSpecificFromTable", parameters));
 
             foreach (Dictionary<string, string> el in thresholdValues)
@@ -107,13 +138,21 @@ namespace Data_Logging_and_Management_Application
                 {
                     if (s.SensorID == int.Parse(el["SensorID"]))
                     {
-                        Console.WriteLine(el["MinThreshold"]);
+                        if ((el["MaxThreshold"] == "true" && s.LastMeasurementValue > float.Parse(el["Threshold"])) || 
+                            (el["MinThreshold"] == "true" && s.LastMeasurementValue < float.Parse(el["Threshold"])))
+                        {
+                            newState = true;
+                        }
                     }
                 }
-                
             }
 
-            return true;
+            if (stateOfLED != newState)
+            {
+                UpdateStoredLEDState(newState);
+            }
+
+            return newState;
         }
 
     }

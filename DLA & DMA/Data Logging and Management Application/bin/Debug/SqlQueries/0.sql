@@ -70,7 +70,7 @@ CREATE TABLE THRESHOLD_VALUE
 
 CREATE TABLE DATA
 ( 
-	Timestamp            datetime  NOT NULL ,
+	Timestamp            char(20) NOT NULL ,
 	MeasureValue         float  NOT NULL ,
 	SensorID             int  NOT NULL ,
 	CONSTRAINT XPKData PRIMARY KEY  CLUSTERED (Timestamp ASC,SensorID ASC),

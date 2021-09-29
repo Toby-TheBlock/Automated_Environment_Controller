@@ -74,6 +74,35 @@ namespace Data_Logging_and_Management_Application
 
 
         /// <summary>
+        /// Adds parameters to a SQL-command, where parameter name and value (including data type if specified) 
+        /// are being properly defined.
+        /// </summary>
+        /// <param name="cmd">The SQL-command who the parameters are to be added to.</param>
+        /// <param name="rawData">Data containing the column names and belonging values.</param>
+        /// <returns>Updated SQL-command containing parameters.</returns>
+        private SqlCommand AddCmdParameters(SqlCommand cmd, Dictionary<string, string> rawData)
+        {
+            foreach (KeyValuePair<string, string> entry in rawData)
+            {
+                string datatype = entry.Value.Contains("@") ? entry.Value.Substring(0, 1) : "";
+                string value = entry.Value.Contains("@") ? entry.Value.Substring(2) : entry.Value;
+
+                switch (datatype)
+                {
+                    case "f":
+                        cmd.Parameters.Add(new SqlParameter("@" + entry.Key, float.Parse(value)));
+                        break;
+                    default:
+                        cmd.Parameters.Add(new SqlParameter("@" + entry.Key, value));
+                        break;
+                }
+            }
+
+            return cmd;
+        }
+
+
+        /// <summary>
         /// Opens a SQL-connection and runs a query based on a stored procedure through it. 
         /// </summary>
         /// <param name="databaseName">The name of the database who's to be used (connectionstring name).</param>
@@ -87,10 +116,7 @@ namespace Data_Logging_and_Management_Application
 
             conn.Open();
 
-            foreach (KeyValuePair<string, string> entry in parameters)
-            {
-                cmd.Parameters.Add(new SqlParameter("@" + entry.Key, entry.Value));
-            }
+            AddCmdParameters(cmd, parameters);
 
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -113,10 +139,7 @@ namespace Data_Logging_and_Management_Application
 
             conn.Open();
 
-            foreach (KeyValuePair<string, string> entry in parameters)
-            {
-                cmd.Parameters.Add(new SqlParameter("@" + entry.Key, entry.Value));
-            }
+            AddCmdParameters(cmd, parameters);
 
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable data = new DataTable();

@@ -16,18 +16,24 @@ namespace Data_Logging_and_Management_Application
         {
             try
             {
-                float rawVoltage = GetVoltageValue(ChanIdentifier, "lightSensorChannel", 0.0, VoltageRating);
+                AnalogReadingInProgress = true;
+
+                float rawVoltage = GetAnalogValue(ChannelIdentifier, "lightSensorChannel", 0.0, VoltageRating);
+
+                System.Threading.Thread.Sleep(100);
+                AnalogReadingInProgress = false;
 
                 Console.WriteLine("The raw voltage over the light sensor is: " + rawVoltage);
             
-                lastMeasurementValue = ConvertVoltageToLux(rawVoltage);
+                lastMeasurementValue = (float) Math.Round(ConvertVoltageToLux(rawVoltage), 1);
 
                 Console.WriteLine("This voltage is equivalent to: " + lastMeasurementValue + " lumen per 1 m^2.");
 
-                //UploadData(lux.ToString());
+                UploadData(lastMeasurementValue.ToString());
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 throw new Exception("Couldn't run data-collection! Ensure that the DAQ is connected to the PC.");
             }
 

@@ -71,7 +71,9 @@
   <ItemGroup>
     <Compile Include="Circle.cs" />
     <Compile Include="DatabaseManager.cs" />
-    <Compile Include="IDaqOutput.cs" />
+    <Compile Include="IDaqAnalogInput.cs" />
+    <Compile Include="IDaqChannel.cs" />
+    <Compile Include="IDaqDigitalOutput.cs" />
     <Compile Include="LED.cs" />
     <Compile Include="LightSensor.cs" />
     <Compile Include="LoadingIcon.cs" />

@@ -16,18 +16,25 @@ namespace Data_Logging_and_Management_Application
         {
             try
             {
-                float rawVoltage = GetVoltageValue(ChanIdentifier, "tempSensorChannel", 0.0, VoltageRating);
+                AnalogReadingInProgress = true;
+
+                float rawVoltage = GetAnalogValue(ChannelIdentifier, "tempSensorChannel", 0.0, VoltageRating);
+
+                System.Threading.Thread.Sleep(100);
+                AnalogReadingInProgress = false;
 
                 Console.WriteLine("The raw voltage over the temperature sensor is: " + rawVoltage);
 
-                lastMeasurementValue = ConvertVoltageToTemp(rawVoltage);
+                lastMeasurementValue = (float) Math.Round(ConvertVoltageToTemp(rawVoltage), 1);
 
                 Console.WriteLine("This voltage is equivalent to: " + lastMeasurementValue + " degrees celcius.");
 
-                //UploadData(temp.ToString());
+                UploadData(lastMeasurementValue.ToString());
+
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 throw new Exception("Couldn't run data-collection! Ensure that the DAQ is connected to the PC.");
             }
             
