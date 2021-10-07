@@ -24,6 +24,7 @@ namespace Data_Logging_and_Management_Application
             dataloggingTimer.Tick += ReadyDataLoggingTab;
         }
 
+
         /// <summary>
         /// Disables/Enables the access to the current textboxes present on the textbox-panel based on which query-operation is being executed.
         /// </summary>
@@ -60,6 +61,7 @@ namespace Data_Logging_and_Management_Application
             }
         }
 
+
         /// <summary>
         /// Changes the Enabled-property of the provieded button based on different conditions.
         /// </summary>
@@ -84,6 +86,7 @@ namespace Data_Logging_and_Management_Application
                     break;
             }
         }
+
 
         /// <summary>
         /// Changes the Enabled-property of the "Submit-/Get-button" based on different conditions.
@@ -114,6 +117,7 @@ namespace Data_Logging_and_Management_Application
             }
         }
 
+
         /// <summary>
         /// Looks through all of the entry values of a dictionary, in the search of non null-values. 
         /// </summary>
@@ -131,6 +135,7 @@ namespace Data_Logging_and_Management_Application
 
             return false;
         }
+
 
         /// <summary>
         /// Creates all of the needed labels and textboxes needed to perform standard SQL SELECT, INSERT and DELETE queries.
@@ -190,6 +195,10 @@ namespace Data_Logging_and_Management_Application
             }
         }
 
+        /// <summary>
+        /// Adds textboxes to the DataLoggingPanel which contain information about last- and next-measurement.
+        /// </summary>
+        /// <param name="element">The panel-control where the new textboxes are to be appended.</param>
         private void CreateDataLoggingPanelContent(Control element)
         {
             Point defLoc = new Point(15, 0);
@@ -210,7 +219,8 @@ namespace Data_Logging_and_Management_Application
                 {
                     TextAlign = HorizontalAlignment.Left,
                     BorderStyle = BorderStyle.None,
-                    Text = element.AccessibleName.Contains("last") ? s.LastMeasurementTimestamp : s.GetNextMeasuringTimestamp(),
+                    Text = element.AccessibleName.Contains("last") ? 
+                    s.LastMeasurementTimestamp + " - " + s.LastMeasurementValue : s.GetNextMeasuringTimestamp(),
                     Size = new Size(160, 15),
                     Location = new Point(defLoc.X + 115, defLoc.Y)
                 };
@@ -219,6 +229,7 @@ namespace Data_Logging_and_Management_Application
                 element.Controls.Add(txt2);
             }
         }
+
 
         /// <summary>
         /// Creates LED objects based on the LED-configurationdata stored in the database.
@@ -233,6 +244,7 @@ namespace Data_Logging_and_Management_Application
                 LED.allLEDs.Add(newLED);
             }
         }
+
 
         /// <summary>
         /// Creates Sensor objects based on the sensor-configurationdata stored in the database.
@@ -258,6 +270,7 @@ namespace Data_Logging_and_Management_Application
                 Sensor.allSensors.Add(newSensor);
             }
         }
+
 
         /// <summary>
         /// Calls the stored SQL-procedures related to the SELECT and UPDATE operations by using
@@ -287,6 +300,7 @@ namespace Data_Logging_and_Management_Application
                 }
             }
         }
+
 
         /// <summary>
         /// Creates a dictionary with all of the necessary data, 
@@ -324,6 +338,7 @@ namespace Data_Logging_and_Management_Application
             return parameters;
         }
 
+
         /// <summary>
         /// Gets the currently selected index-value from the specified combobox.
         /// </summary>
@@ -344,6 +359,7 @@ namespace Data_Logging_and_Management_Application
 
             return result;
         }
+
 
         /// <summary>
         /// Gets all of the userinput from the textboxes in the main panel.
@@ -368,6 +384,7 @@ namespace Data_Logging_and_Management_Application
             return data;
         }
 
+
         /// <summary>
         /// Adds a value to the text-property of the textboxes present in the main-panel
         /// </summary>
@@ -387,6 +404,7 @@ namespace Data_Logging_and_Management_Application
             }
         }
 
+
         /// <summary>
         /// Sets the initial state of the DataLogging-Tab.
         /// </summary>
@@ -404,6 +422,7 @@ namespace Data_Logging_and_Management_Application
                 }
             }
         }
+
 
         /// <summary>
         /// Sets the initial state of the DataLogging-Tab.
@@ -446,6 +465,7 @@ namespace Data_Logging_and_Management_Application
             CreateLabelAndInput(data);
         }
 
+
         /// <summary>
         /// Fills and selects the correct indexes of the combo-boxes present on the DataManagementTab.
         /// </summary>
@@ -461,6 +481,7 @@ namespace Data_Logging_and_Management_Application
             cboDbTables.SelectedIndex = 2;
             cboSqlOperation.SelectedIndex = 0;
         }
+
 
         /// <summary>
         /// Calls the stored SQL-procedures related to the DELETE, INSERT ans UPDATE operations by using
@@ -504,6 +525,7 @@ namespace Data_Logging_and_Management_Application
                 MessageBox.Show(error.Message);
             }
         }
+
 
         /// <summary>
         /// Checks if all of the textboxes who are tied to a mandatory column have a value inside of them. 
@@ -583,7 +605,6 @@ namespace Data_Logging_and_Management_Application
 
             ReadyDataLoggingTab(true);
         }
-
 
         private void cboSqlOperation_SelectedIndexChanged(object sender, EventArgs e)
         {

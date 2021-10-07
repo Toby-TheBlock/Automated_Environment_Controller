@@ -8,7 +8,7 @@ using System.Data;
 
 namespace Data_Logging_and_Management_Application
 {
-    class DatabaseManager
+    public class DatabaseManager
     {
         private static DatabaseManager singleton = null;
         private string dbName;
@@ -19,7 +19,7 @@ namespace Data_Logging_and_Management_Application
             {
                 if (singleton == null)
                 {
-                    singleton = new DatabaseManager();
+                    singleton = new DatabaseManager("Enviroment_Controller");
                 }
                 return singleton;
             }
@@ -30,46 +30,9 @@ namespace Data_Logging_and_Management_Application
             get { return dbName; }
         }
 
-        private DatabaseManager()
+        private DatabaseManager(string databaseName)
         {
-            dbName = "Enviroment_Controller";
-        }
-
-
-        private SqlConnection OpenDatabaseConnection(string databaseName)
-        {
-            return new SqlConnection(ConfigurationManager.ConnectionStrings[databaseName].ConnectionString);
-        }
-
-
-        public async Task<bool> ConfigureDatabase()
-        {
-            try
-            {
-                string sourcePath = Path.Combine(Environment.CurrentDirectory, @"SqlQueries\");
-                string sqlQuery = File.ReadAllText(sourcePath + "setupDB.sql");
-                SqlConnection conn = OpenDatabaseConnection("Setup");
-                SqlCommand comm = new SqlCommand(sqlQuery, conn);
-                conn.Open();
-                comm.ExecuteNonQuery();
-
-                // Runs remaining sql-scripts containing creation of procedures. 
-                for (int i = 0; i < Directory.GetFiles(sourcePath, "*", SearchOption.TopDirectoryOnly).Length - 1; i++)
-                {
-                    string currentQuery = File.ReadAllText(sourcePath + i + ".sql");
-                    SqlCommand cmd = new SqlCommand(currentQuery, conn);
-                    cmd.ExecuteNonQuery();
-                }
-
-                conn.Close();
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return false;
-            }
-
+            dbName = databaseName;
         }
 
 
@@ -124,7 +87,7 @@ namespace Data_Logging_and_Management_Application
 
 
         /// <summary>
-        /// Opens a SQL-connection and runs a query based on a stored procedure through it. 
+        /// Opens a SQL-connection and runs a query based on a stored procedure with parameters through it. 
         /// The query is being run on the back of a SQL-reader, which stores the returned data in a datatable.
         /// </summary>
         /// <param name="databaseName">The name of the database who's to be used (connectionstring name).</param>
@@ -150,6 +113,14 @@ namespace Data_Logging_and_Management_Application
             return data;
         }
 
+
+        /// <summary>
+        /// Opens a SQL-connection and runs a query based on a stored procedure without parameters through it. 
+        /// The query is being run on the back of a SQL-reader, which stores the returned data in a datatable.
+        /// </summary>
+        /// <param name="databaseName">The name of the database who's to be used (connectionstring name).</param>
+        /// <param name="procedureName">The name of the stored procedure who's to be used.</param>
+        /// <returns>A datatable if all of the database data which was returned by the stored procedure.</returns>
         public DataTable CallProcedureWithReturn(string databaseName, string procedureName)
         {
             SqlConnection conn = OpenDatabaseConnection(databaseName);
@@ -165,6 +136,79 @@ namespace Data_Logging_and_Management_Application
             conn.Close();
 
             return data;
+        }
+
+
+        /// <summary>
+        /// Checks if the application can establish a connection to the local SQL-server and a certain database on it.
+        /// </summary>
+        /// <param name="databaseName">Name of the database which is to be used.</param>
+        /// <returns>
+        /// Index value indicating the connection status.
+        /// 1 = could connect to the specified database.
+        /// 2 = couldn't connect to the specified database.
+        /// 3 = SQL-server is not accessible.
+        /// </returns>
+        public async Task<int> CheckForSqlConnection(string databaseName)
+        {
+            try
+            {
+                try
+                {
+                    SqlConnection serverConn = OpenDatabaseConnection("Setup");
+                    serverConn.Open();
+                    serverConn.Close();
+                }
+                catch
+                {
+                    return 3;
+                }
+
+                SqlConnection testConn = OpenDatabaseConnection(databaseName);
+                testConn.Open();
+                testConn.Close();
+
+                return 1;
+            }
+            catch
+            {
+                return 2;
+            }
+        }
+
+
+        /// <summary>
+        /// Sets up and configures a new Database instance on the SQL-server, based on SQL-files stored in the debug folder.
+        /// </summary>
+        /// <returns>Verification that the configuration finished successfully.</returns>
+        public async Task<bool> ConfigureDatabase()
+        {
+            try
+            {
+                string sourcePath = Path.Combine(Environment.CurrentDirectory, @"SqlQueries\");
+                string sqlQuery = File.ReadAllText(sourcePath + "setupDB.sql");
+                SqlConnection conn = OpenDatabaseConnection("Setup");
+                SqlCommand comm = new SqlCommand(sqlQuery, conn);
+                conn.Open();
+                comm.ExecuteNonQuery();
+
+                // Runs remaining sql-scripts containing creation of procedures. 
+                for (int i = 0; i < Directory.GetFiles(sourcePath, "*", SearchOption.TopDirectoryOnly).Length - 1; i++)
+                {
+                    string currentQuery = File.ReadAllText(sourcePath + i + ".sql");
+                    SqlCommand cmd = new SqlCommand(currentQuery, conn);
+                    cmd.ExecuteNonQuery();
+                }
+
+                conn.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+
         }
 
 
@@ -192,6 +236,11 @@ namespace Data_Logging_and_Management_Application
             return result;
         }
 
+
+        /// <summary>
+        /// Fetches all of the Table-names currently present in the initiated database.
+        /// </summary>
+        /// <returns>A list containing all of the Table-names.</returns>
         public List<string> GetTableInformation()
         {
             List<Dictionary<string, string>> result = ConvertDataTableToDictionary(CallProcedureWithReturn(DbName, "GetAllTableNames"));
@@ -207,73 +256,9 @@ namespace Data_Logging_and_Management_Application
         }
 
 
-        /// <summary>
-        /// Checks each value in a datatable if it is of the Byte[] type, and if so converts it to boolean. 
-        /// This has to be done since data grid views can't handle the Byte[] type be default. 
-        /// </summary>
-        /// <param name="rawTable">The datatable who's to be checked.</param>
-        /// <returns>A sanitized datatable.</returns>
-        private DataTable ReadyDataTableForGridView(DataTable rawTable)
+        private SqlConnection OpenDatabaseConnection(string databaseName)
         {
-            foreach (DataColumn col in rawTable.Columns)
-            {
-                if (col.DataType.Name == "Byte[]")
-                {
-                    DataTable readiedTable = rawTable.Clone();
-                    readiedTable.Columns[col.ColumnName].DataType = typeof(bool);
-
-                    foreach (DataRow row in rawTable.Rows)
-                    {
-                        DataRow modifiedRow = readiedTable.NewRow();
-
-                        for (int i = 0; i < row.ItemArray.Length; i++)
-                        {
-                            var value = row.ItemArray[i];
-
-                            if (row.ItemArray[i].GetType() == typeof(Byte[]))
-                            {
-                                value = BitConverter.ToBoolean((Byte[])row.ItemArray[i], 0);
-                            }
-
-                            modifiedRow[i] = value;
-                        }
-
-                        readiedTable.Rows.Add(modifiedRow);
-                    }
-
-                    return readiedTable;
-                }
-            }
-
-            return rawTable;
-        }
-
-
-        public async Task<int> CheckForSqlConnection(string databaseName)
-        {
-            try
-            {
-                try
-                {
-                    SqlConnection serverConn = OpenDatabaseConnection("Setup");
-                    serverConn.Open();
-                    serverConn.Close();
-                }
-                catch
-                {
-                    return 3;
-                }
-
-                SqlConnection testConn = OpenDatabaseConnection(databaseName);
-                testConn.Open();
-                testConn.Close();
-
-                return 1;
-            }
-            catch
-            {
-                return 2;
-            }
+            return new SqlConnection(ConfigurationManager.ConnectionStrings[databaseName].ConnectionString);
         }
     }
 }

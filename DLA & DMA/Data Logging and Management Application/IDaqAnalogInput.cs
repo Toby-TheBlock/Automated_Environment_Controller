@@ -1,7 +1,7 @@
 ﻿
 namespace Data_Logging_and_Management_Application
 {
-    interface IDaqAnalogInput : IDaqChannel
+    public interface IDaqAnalogInput : IDaqChannel
     {
         bool AnalogReadingInProgress { get; set; }
 

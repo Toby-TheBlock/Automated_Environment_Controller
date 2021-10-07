@@ -19,6 +19,22 @@ namespace Data_Logging_and_Management_Application
             InitializeComponent();
         }
 
+
+        /// <summary>
+        /// Checks if the RGP_GAME database exists on the SQL-server. 
+        /// Awaits the result and then merges the background thread back into the main thread.
+        /// </summary>
+        private async void GetConnectionStatus()
+        {
+            connStatus = await dbm.CheckForSqlConnection(dbm.DbName);
+            parallellThread.Join();
+        }
+
+
+        /// <summary>
+        /// Tries to setup a database connection between the application and the local SQL-server.
+        /// Ensures responsive progress feedback, by displaying a loading-icon and progress text.
+        /// </summary>
         private async void SetupDatabaseConnection()
         {
             int counter = 0;
@@ -64,6 +80,10 @@ namespace Data_Logging_and_Management_Application
             Application.Exit();
         }
 
+
+        /// <summary>
+        /// Starts a new thread in which the database connection is being checked.
+        /// </summary>
         private void StartNewThread()
         {
             parallellThread = new Thread(GetConnectionStatus);
@@ -71,31 +91,7 @@ namespace Data_Logging_and_Management_Application
             parallellThread.Start();
         }
 
-        /// <summary>
-        /// Checks if the RGP_GAME database exists on the SQL-server. 
-        /// Awaits the result and then merges the background thread back into the main thread.
-        /// </summary>
-        private async void GetConnectionStatus()
-        {
-            connStatus = await dbm.CheckForSqlConnection(dbm.DbName);
-            parallellThread.Join();
-        }
 
-
-        private void pictureBox1_Paint(object sender, PaintEventArgs e)
-        {
-            if (activeLoadingIcon == null)
-            {
-                activeLoadingIcon = new LoadingIcon(6, 0.34906585039, Color.Black, 10);
-            }
-            else
-            {
-                activeLoadingIcon.UpdateLoadingIcon(e.Graphics);
-            }
-        }
-
-
-        
         /// <summary>
         /// Updates the info text label on the splash screen informing the user of what is happening.
         /// </summary>
@@ -138,6 +134,18 @@ namespace Data_Logging_and_Management_Application
             lblInfoText.Refresh();
         }
 
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            if (activeLoadingIcon == null)
+            {
+                activeLoadingIcon = new LoadingIcon(6, 0.34906585039, Color.Black, 10);
+            }
+            else
+            {
+                activeLoadingIcon.UpdateLoadingIcon(e.Graphics);
+            }
+        }
 
         private void SplashScreenForm_Activated(object sender, EventArgs e)
         {

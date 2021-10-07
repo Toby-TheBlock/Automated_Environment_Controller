@@ -11,7 +11,7 @@ namespace Data_Logging_and_Management_Application
         protected static DatabaseManager dbm = DatabaseManager.Singleton;
 
         private int sensorID;
-        private float voltageRating;
+        protected float voltageRating;
         private int measureFrequency;
         private Timer channelThread;
         private string lastMeasurementTimestamp;
@@ -36,17 +36,6 @@ namespace Data_Logging_and_Management_Application
             get { return lastMeasurementValue; }
         }
 
-        protected float VoltageRating 
-        {
-            get { return voltageRating; }
-        }
-
-        protected int MeasureFrequency
-        {
-            get { return measureFrequency; }
-            set { measureFrequency = value; }
-        }
-
         public Sensor(int sensorID, float voltageRating, int measureFrequency, string chanIdentifier)
         {
             this.sensorID = sensorID;
@@ -55,11 +44,7 @@ namespace Data_Logging_and_Management_Application
             ChannelIdentifier = chanIdentifier;
 
             StartNewChannelThread();
-
-            Dictionary<string, string> parameters = new Dictionary<string, string>() { { "SensorID", sensorID.ToString() } };
-            string data = dbm.ConvertDataTableToDictionary(dbm.CallProcedureWithReturn(dbm.DbName, "GetLastDatasample", parameters))[0]["Timestamp"];
-
-            lastMeasurementTimestamp = data.Length > 0 ? data : "N/A";
+            lastMeasurementTimestamp = "N/A";
         }
 
 
@@ -93,7 +78,7 @@ namespace Data_Logging_and_Management_Application
         /// <returns>Timestamp of the next measurement.</returns>
         public string GetNextMeasuringTimestamp()
         {
-            return !lastMeasurementTimestamp.Contains("N/A") ? Convert.ToDateTime(lastMeasurementTimestamp).AddSeconds(measureFrequency).ToString() : lastMeasurementTimestamp;
+            return lastMeasurementTimestamp != "N/A" ? DateTime.Parse(lastMeasurementTimestamp).AddMilliseconds(measureFrequency).ToString("yyyy-MM-dd HH:mm:ss") : "N/A";
         }
 
 
@@ -151,6 +136,10 @@ namespace Data_Logging_and_Management_Application
         }
 
 
+        /// <summary>
+        /// Sends an INSERT-query to the database with the latest measurement value.
+        /// </summary>
+        /// <param name="data">The last measurement value.</param>
         protected void UploadData(string data)
         {
             lastMeasurementTimestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");

@@ -30,9 +30,9 @@ INSERT LED (LED_ID, Description, State, Color, ChanIdentifier) VALUES (1, 'Indic
 INSERT LED (LED_ID, Description, State, Color, ChanIdentifier) VALUES (2, 'Indicates if the AC cooling is turned on.', 0, 'Yellow', 'Dev1/port0/line2')
 INSERT LED (LED_ID, Description, State, Color, ChanIdentifier) VALUES (3, 'Indicates if the AC heating is turned on.', 0, 'Red', 'Dev1/port0/line3')
 
-INSERT THRESHOLD_VALUE (Threshold, SensorID, MaxThreshold, MinThreshold, LED_ID) VALUES (2.0, 0, 0, 1, 0)
-INSERT THRESHOLD_VALUE (Threshold, SensorID, MaxThreshold, MinThreshold, LED_ID) VALUES (3.0, 0, 0, 0, NULL)
-INSERT THRESHOLD_VALUE (Threshold, SensorID, MaxThreshold, MinThreshold, LED_ID) VALUES (4.0, 0, 1, 0, 0)
-INSERT THRESHOLD_VALUE (Threshold, SensorID, MaxThreshold, MinThreshold, LED_ID) VALUES (2.0, 1, 0, 1, 1)
-INSERT THRESHOLD_VALUE (Threshold, SensorID, MaxThreshold, MinThreshold, LED_ID) VALUES (4.0, 1, 1, 0, 2)
+INSERT THRESHOLD_VALUE (Threshold, SensorID, MaxThreshold, MinThreshold, LED_ID) VALUES (30.0, 0, 0, 1, 1)
+INSERT THRESHOLD_VALUE (Threshold, SensorID, MaxThreshold, MinThreshold, LED_ID) VALUES (50.0, 0, 0, 0, NULL)
+INSERT THRESHOLD_VALUE (Threshold, SensorID, MaxThreshold, MinThreshold, LED_ID) VALUES (70.0, 0, 1, 0, NULL)
+INSERT THRESHOLD_VALUE (Threshold, SensorID, MaxThreshold, MinThreshold, LED_ID) VALUES (16.0, 1, 0, 1, 3)
+INSERT THRESHOLD_VALUE (Threshold, SensorID, MaxThreshold, MinThreshold, LED_ID) VALUES (23.0, 1, 1, 0, 2)
 

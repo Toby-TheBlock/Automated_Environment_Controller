@@ -27,14 +27,11 @@ namespace Data_Logging_and_Management_Application
             }
         }
 
-        private (int, int) GetXYCoords(double currentAngle)
-        {
-            int xCoord = circles[0].XCoord + Convert.ToInt32(15 * Math.Cos(currentAngle));
-            int yCoord = circles[0].YCoord + Convert.ToInt32(15 * Math.Sin(currentAngle));
 
-            return (xCoord, yCoord);
-        }
-
+        /// <summary>
+        /// Draws a circle based on each object currently present in the circles collection.
+        /// </summary>
+        /// <param name="g">The graphics object who's to been drawn on.</param>
         private void DrawLoadingIcon(Graphics g)
         {
             foreach (Circle c in circles)
@@ -43,6 +40,25 @@ namespace Data_Logging_and_Management_Application
             }
         }
 
+
+        /// <summary>
+        /// Calculates the x- and y-coordinates for the position of a circle based on its angle.
+        /// </summary>
+        /// <param name="currentAngle">The angle of the circle i approximation to the first circle.</param>
+        /// <returns>The x- and y-coordinates.</returns>
+        private (int, int) GetXYCoords(double currentAngle)
+        {
+            int xCoord = circles[0].XCoord + Convert.ToInt32(15 * Math.Cos(currentAngle));
+            int yCoord = circles[0].YCoord + Convert.ToInt32(15 * Math.Sin(currentAngle));
+
+            return (xCoord, yCoord);
+        }
+
+
+        /// <summary>
+        /// Updates the loading-icon by adding a new circle with a new position at the beginning of the icon, and removing the last circle. 
+        /// </summary>
+        /// <param name="g">The graphics object who's to been drawn on.</param>
         public void UpdateLoadingIcon(Graphics g)
         {
             double currentAngle = circles[0].Angle + angleStep;

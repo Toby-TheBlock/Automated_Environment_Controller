@@ -28,6 +28,51 @@ namespace Data_Logging_and_Management_Application
             ChannelIdentifier = chanIdentifier;
         }
 
+
+        /// <summary>
+        /// Compares the LEDs stored threshold value up against the current values gathered by the sensors. 
+        /// </summary>
+        /// <returns>The state of the LED based on if a threshold has been exceeded.</returns>
+        private async Task<bool> CheckThreshold()
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>()
+            {
+                { "TableName", "THRESHOLD_VALUE" },
+                { "ColumnName", "LED_ID" },
+                { "SearchData", LED_ID.ToString() }
+            };
+
+            bool newState = false;
+            List<Dictionary<string, string>> thresholdValues = dbm.ConvertDataTableToDictionary(dbm.CallProcedureWithReturn(dbm.DbName, "SelectSpecificFromTable", parameters));
+
+            foreach (Dictionary<string, string> el in thresholdValues)
+            {
+                foreach (Sensor s in Sensor.allSensors)
+                {
+                    if (s.SensorID == int.Parse(el["SensorID"]))
+                    {
+                        if ((el["MaxThreshold"] == "True" && s.LastMeasurementValue > float.Parse(el["Threshold"])) ||
+                            (el["MinThreshold"] == "True" && s.LastMeasurementValue < float.Parse(el["Threshold"])))
+                        {
+                            newState = true;
+                        }
+                    }
+                }
+            }
+
+            if (stateOfLED != newState)
+            {
+                UpdateStoredLEDState(newState);
+            }
+
+            return newState;
+        }
+
+
+        /// <summary>
+        /// Gets all of the stored LED-information from the local database.
+        /// </summary>
+        /// <returns>A list of dictionaries who store the row information.</returns>
         public static List<Dictionary<string, string>> GetStoredLEDInformation()
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>()
@@ -39,33 +84,30 @@ namespace Data_Logging_and_Management_Application
             return dbm.ConvertDataTableToDictionary(dbm.CallProcedureWithReturn(dbm.DbName, "SelectAllFromTable", parameters));
         }
 
-        private void UpdateStoredLEDState(bool newLEDState)
-        {
-            foreach (Dictionary<string, string> el in GetStoredLEDInformation())
-            {
-                if (int.Parse(el["LED_ID"]) == LED_ID)
-                {
-                    Dictionary<string, string> updateParameters = new Dictionary<string, string>()
-                                {
-                                    { "TableName", "LED" },
-                                    { "ColumnName1", "LED_ID" },
-                                    { "Value1", el["LED_ID"] },
-                                    { "ColumnName2", "Description" },
-                                    { "Value2", el["Description"] },
-                                    { "ColumnName3", "State" },
-                                    { "Value3", newLEDState.ToString() },
-                                    { "ColumnName4", "Color" },
-                                    { "Value4", el["Color"] },
-                                    { "ColumnName5", "ChanIdentifier" },
-                                    { "Value5", el["ChanIdentifier"] }
-                                };
 
-                    dbm.CallProcedureWithoutReturn(dbm.DbName, "UpdateEntry5Columns", updateParameters);
-                }
+        /// <summary>
+        /// Initiates the enabling/disabling of the LED light.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
+        private async void LEDLightningState(Object source, ElapsedEventArgs e)
+        {
+            if (flashingLED)
+            {
+                stateOfLED = stateOfLED ? false : true;
             }
+            else
+            {
+                stateOfLED = await CheckThreshold();
+            }
+
+            SetOutputPortState();
         }
 
 
+        /// <summary>
+        /// Sets the output voltage for the LEDs physical output port, base of the stateOfLED field. 
+        /// </summary>
         public void SetOutputPortState()
         {
             try
@@ -86,15 +128,21 @@ namespace Data_Logging_and_Management_Application
         }
 
 
+        /// <summary>
+        /// Starts a new "thread" (timer) in which the DAQ communication is being held.
+        /// </summary>
         public void StartNewChannelThread()
         {
-            channelThread = new Timer(500);
+            channelThread = new Timer(1500);
             channelThread.Elapsed += LEDLightningState;
             channelThread.AutoReset = true;
             channelThread.Enabled = true;
         }
 
 
+        /// <summary>
+        /// Stops the "thread" (timer) in which the DAQ communication is being held.
+        /// </summary>
         public void TerminateChannelThread()
         {
             channelThread.Stop();
@@ -105,55 +153,36 @@ namespace Data_Logging_and_Management_Application
         }
 
 
-        private async void LEDLightningState(Object source, ElapsedEventArgs e)
+        /// <summary>
+        /// Sends the new LED-state to the database via. SQL-query.
+        /// </summary>
+        /// <param name="newLEDState">The new boolean state of the LED.</param>
+        private void UpdateStoredLEDState(bool newLEDState)
         {
-            if (flashingLED)
+            foreach (Dictionary<string, string> el in GetStoredLEDInformation())
             {
-                stateOfLED = stateOfLED ? false : true;
-            } 
-            else
-            {
-                stateOfLED = await CheckThresholds();
-            }
-
-            SetOutputPortState();
-        }
-
-
-        private async Task<bool> CheckThresholds()
-        {
-            Dictionary<string, string> parameters = new Dictionary<string, string>()
-            {
-                { "TableName", "THRESHOLD_VALUE" },
-                { "ColumnName", "LED_ID" },
-                { "SearchData", LED_ID.ToString() }
-            };
-
-            bool newState = false;
-            List<Dictionary<string, string>> thresholdValues = dbm.ConvertDataTableToDictionary(dbm.CallProcedureWithReturn(dbm.DbName, "SelectSpecificFromTable", parameters));
-
-            foreach (Dictionary<string, string> el in thresholdValues)
-            {
-                foreach (Sensor s in Sensor.allSensors)
+                if (int.Parse(el["LED_ID"]) == LED_ID)
                 {
-                    if (s.SensorID == int.Parse(el["SensorID"]))
-                    {
-                        if ((el["MaxThreshold"] == "true" && s.LastMeasurementValue > float.Parse(el["Threshold"])) || 
-                            (el["MinThreshold"] == "true" && s.LastMeasurementValue < float.Parse(el["Threshold"])))
-                        {
-                            newState = true;
-                        }
-                    }
+                    Dictionary<string, string> updateParameters = new Dictionary<string, string>()
+                                {
+                                    { "TableName", "LED" },
+                                    { "ColumnName1", "LED_ID" },
+                                    { "Value1", el["LED_ID"] },
+                                    { "ColumnName2", "Description" },
+                                    { "Value2", el["Description"] },
+                                    { "ColumnName3", "State" },
+                                    { "Value3", newLEDState.ToString() },
+                                    { "ColumnName4", "Color" },
+                                    { "Value4", el["Color"] },
+                                    { "ColumnName5", "ChanIdentifier" },
+                                    { "Value5", el["ChanIdentifier"] },
+                                    { "ColumnName", "ChanIdentifier" },
+                                    { "SearchData", el["LED_ID"] }
+                                };
+
+                    dbm.CallProcedureWithoutReturn(dbm.DbName, "UpdateEntry5Columns", updateParameters);
                 }
             }
-
-            if (stateOfLED != newState)
-            {
-                UpdateStoredLEDState(newState);
-            }
-
-            return newState;
         }
-
     }
 }
