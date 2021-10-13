@@ -69,20 +69,22 @@ namespace Data_Logging_and_Management_Application
         private void ChangeBtnAccess(object button)
         {
             Button btn = (Button)button;
-            btn.Enabled = false;
-
             switch (btn.Name)
             {
                 case "btnStartDL":
-                    btnStopDL.Enabled = true;
-                    btnMeasurementNow.Enabled = true;
+                    foreach (Button currentBtn in DataLogging.Controls.OfType<Button>())
+                    {
+                        currentBtn.Enabled = true;
+                    }
+                    btnStartDL.Enabled = false;
                     break;
+
                 case "btnStopDL":
+                    foreach (Button currentBtn in DataLogging.Controls.OfType<Button>())
+                    {
+                        currentBtn.Enabled = false;
+                    }
                     btnStartDL.Enabled = true;
-                    btnMeasurementNow.Enabled = false;
-                    break;
-                case "btnMeasurementNow":
-                    btnMeasurementNow.Enabled = true;
                     break;
             }
         }
@@ -269,6 +271,36 @@ namespace Data_Logging_and_Management_Application
 
                 Sensor.allSensors.Add(newSensor);
             }
+        }
+
+
+        /// <summary>
+        /// Initiates the export process of fetching all sensor data, and then storing it in a file of choosen type.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExportToFile_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>()
+            {
+                { "TableName", "DATA" },
+                { "NumberOfRows", "1000" }
+            };
+
+            FileExporter fe = txtFilepath.Text.Length > 0 ? new FileExporter(txtFilepath.Text) : new FileExporter();
+            Button currentBtn = (Button)sender;
+
+            string filetype = currentBtn.Name.Contains("CSV") ? "csv" : "txt";
+            
+            try
+            {
+                fe.WriteToFile(dbm.CallProcedureWithReturn(dbm.DbName, "SelectAllFromTable", parameters), DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss") + "_Sensordata", filetype);
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+            
         }
 
 
