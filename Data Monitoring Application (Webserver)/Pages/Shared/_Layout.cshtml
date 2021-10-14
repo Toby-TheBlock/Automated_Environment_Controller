@@ -5,23 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/main.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/main.js" asp-append-version="true"></script>
 </head>
 <body>
     <header>
         <nav class="navbar">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Automated_Enviroment_Controller</a>
-
-                <div class="navbar-list-wrapper">
-                    <ul>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Index">Overview</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Configuration">Configuration</a>
-                        </li>
-                    </ul>
-                </div>
+            <div>
+                <ul>
+                    <li class="nav-item">
+                        <p>Automated Environment Controller:</p>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="" asp-page="/Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="" asp-page="/SensorData">History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="" asp-page="/LEDStatus">LEDStatus</a>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
@@ -32,13 +36,10 @@
     </div>
 
     <footer class="footer">
-        <div class="container">
-            <p>Footer stuff here.</p>
+        <div>
+            <p>© Tobias Günther 2021. All rights reserved. :)</p>
         </div>
     </footer>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/main.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
