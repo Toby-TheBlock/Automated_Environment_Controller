@@ -1,1 +1,1 @@
-CREATE DATABASE Enviroment_Controller
+CREATE DATABASE Environment_Controller

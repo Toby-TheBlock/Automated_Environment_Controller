@@ -1,4 +1,4 @@
-USE Enviroment_Controller
+USE Environment_Controller
 
 -- ADDING DATA TO TABLES
 INSERT SENSOR_TYPE (SensorType) VALUES ('Light level')

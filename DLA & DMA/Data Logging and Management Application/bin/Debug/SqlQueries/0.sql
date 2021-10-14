@@ -1,4 +1,4 @@
-USE Enviroment_Controller
+USE Environment_Controller
 
 --SETTING UP THE TABLE STRUCTURE
 CREATE TABLE SENSOR_TYPE
