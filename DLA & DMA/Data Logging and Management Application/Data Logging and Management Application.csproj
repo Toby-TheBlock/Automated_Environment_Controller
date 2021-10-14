@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Circle.cs" />
     <Compile Include="DatabaseManager.cs" />
+    <Compile Include="FileExporter.cs" />
     <Compile Include="IDaqAnalogInput.cs" />
     <Compile Include="IDaqChannel.cs" />
     <Compile Include="IDaqDigitalOutput.cs" />

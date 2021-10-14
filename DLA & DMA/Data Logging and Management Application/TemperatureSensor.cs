@@ -17,7 +17,7 @@ namespace Data_Logging_and_Management_Application
 
             double Vout = voltage;
             double Vin = 5;
-            double Ro = 330; // 10k Resistor
+            double Ro = 12000; // 10k Resistor
             double Rt = (Vout * Ro) / (Vin - Vout);
 
             double A = 0.001129148;

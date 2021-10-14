@@ -19,7 +19,7 @@ namespace Data_Logging_and_Management_Application
             {
                 if (singleton == null)
                 {
-                    singleton = new DatabaseManager("Enviroment_Controller");
+                    singleton = new DatabaseManager("Environment_Controller");
                 }
                 return singleton;
             }
