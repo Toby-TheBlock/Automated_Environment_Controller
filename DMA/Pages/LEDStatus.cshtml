@@ -1,0 +1,13 @@
+﻿@page
+@model Data_Monitoring_Application.Pages.LEDStatusModel
+@{
+    ViewData["Title"] = "LED Status";
+}
+
+<h1>Overview over the LEDs status</h1>
+<br />
+<div id="svg-container"></div>
+
+<script>
+    createLEDElements([new Map([["Color", "red"], ["Description", "Plant light"], ["LED_ID", 1], ["State", "True"]])]);
+</script>
