@@ -6,8 +6,8 @@
 
 <h1>Overview over the LEDs status</h1>
 <br />
-<div id="svg-container"></div>
+<div id="led-container"></div>
 
 <script>
-    createLEDElements([new Map([["Color", "red"], ["Description", "Plant light"], ["LED_ID", 1], ["State", "True"]])]);
+    createLEDElements(@Json.Serialize(Model.LEDInformation));
 </script>

@@ -11,7 +11,14 @@ namespace Data_Monitoring_Application.Pages
     {
         private DatabaseManager dbm = DatabaseManager.Singleton;
 
+        public List<Dictionary<string, string>> LEDInformation { get; set; }
+   
         public void OnGet()
+        {
+            LEDInformation = GetLEDInformation();
+        }
+
+        private List<Dictionary<string, string>> GetLEDInformation()
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>()
             {
@@ -19,7 +26,7 @@ namespace Data_Monitoring_Application.Pages
                 { "NumberOfRows", "100" }
             };
 
-            dbm.ConvertDataTableToDictionary(dbm.CallProcedureWithReturn(dbm.DbName, "SelectAllFromTable", parameters));
+            return dbm.ConvertDataTableToDictionary(dbm.CallProcedureWithReturn(dbm.DbName, "SelectAllFromTable", parameters));
         }
     }
 }

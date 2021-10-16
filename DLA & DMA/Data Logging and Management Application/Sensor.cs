@@ -105,12 +105,19 @@ namespace Data_Logging_and_Management_Application
         /// <param name="e"></param>
         protected void RunMeasurements(Object source, ElapsedEventArgs e)
         {
-            while (AnalogReadingInProgress)
+            try
             {
-                System.Threading.Thread.Sleep(500);
-            }
+                while (AnalogReadingInProgress)
+                {
+                    System.Threading.Thread.Sleep(500);
+                }
 
-            GetData();
+                GetData();
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error.Message);
+            }
         }
 
 
