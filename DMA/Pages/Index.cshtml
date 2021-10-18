@@ -1,10 +1,18 @@
 ﻿@page
 @model Data_Monitoring_Application.Pages.IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Current Conditions";
 }
 
-<div>
-    <h1>Homepage!</h1>
-    <p>Some stuff here</p>
-</div>
+<h1>Overview over the current environment conditions.</h1>
+<br />
+<div id="temp-container"></div>
+<br />
+<div id="light-container"></div>
+<br />
+<br />
+
+<script>
+    let data = @Json.Serialize(Model.CurrentDataAndThreshold);
+    console.log(data)
+</script>

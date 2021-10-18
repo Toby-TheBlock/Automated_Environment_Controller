@@ -14,7 +14,7 @@ function createLEDElements(LedInformation) {
         p1.innerHTML = "<strong>LED" + element["LED_ID"] + "</strong> - " + element["Description"];
 
         let p2 = document.createElement("p");
-        p2.innerHTML = "State: " + element["State"];
+        p2.innerHTML = "<strong>State:</strong> " + element["State"];
 
         let table = document.createElement("table");
         let column1 = document.createElement("td");
@@ -84,10 +84,12 @@ function createCanvasElements(identifiers) {
 
 
 function createGraphs(measuringData, identifiers) {
+
+    let colors = ["rgba(67,209,68,0.3)", "rgba(209,68,67,0.3)", "rgba(209,139,67,0.3)", "rgba(67,137,209,0.3)", "rgba(208,209,67,0.3)"]
+
     identifiers.forEach(function (id) {
         let xyValues = filterData(measuringData, id);
         let canvas = document.getElementById("canvas" + id).getContext("2d");
-        document.getElementById("canvas" + id).style.cssText = "margin: 20px; padding: 10px; background-color: #ffffff;";
 
         new Chart(canvas, {
             type: "line",
@@ -95,7 +97,8 @@ function createGraphs(measuringData, identifiers) {
                 labels: xyValues[0],
                 datasets: [{
                     label: getGraphlabel(measuringData, id),
-                    data: xyValues[1]
+                    data: xyValues[1],
+                    backgroundColor: colors[Math.floor(Math.random() * colors.length)]
                 }],
             },
             options: {

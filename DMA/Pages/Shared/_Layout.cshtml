@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/main.css" />
+    <link rel="shortcut icon" type="image/ico" href="~/controllers.ico" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
     <script src="~/js/main.js" asp-append-version="true"></script>
@@ -13,12 +14,12 @@
     <header>
         <nav class="navbar">
             <div>
-                <ul>
+                <ul class="navlist">
                     <li class="nav-item">
                         <p>Automated Environment Controller:</p>
                     </li>
                     <li class="nav-item">
-                        <a asp-area="" asp-page="/Index">Home</a>
+                        <a asp-area="" asp-page="/Index">Current Conditions</a>
                     </li>
                     <li class="nav-item">
                         <a asp-area="" asp-page="/MeasuringData">Measuring Data</a>
