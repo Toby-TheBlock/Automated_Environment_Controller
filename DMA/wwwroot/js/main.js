@@ -120,3 +120,65 @@ function createGraphs(measuringData, identifiers) {
         })
     });
 }
+
+
+function checkCurrentValueAgainstThreshold(data, valueType) {
+    let currentStates = valueType.includes("Temperature") ?
+        ["Too Cold! Heating needed!", "Too Hot! Cooling needed!", "Perfect Temperature!"] :
+        ["Very dark! Extra light needed!", "Very bright! No extra light needed!", "Perfect lighting!"];
+    let imageNames = valueType.includes("Temperature") ?
+        ["tempCold", "tempHot", "tempRoom"] :
+        ["lightOvercast", "lightSunny", "lightCloudy"];
+
+    let currentValue;
+    let index;
+
+    data.forEach(function (entry) {
+        if (entry["SensorType"].includes(valueType)) {
+            currentValue = entry["MeasureValue"];
+
+            if (entry["MinThreshold"] == 1 && currentValue < entry["Threshold"]) {
+                index = 0;
+            }
+            else if (entry["MaxThreshold"] == 1 && currentValue > entry["Threshold"]) {
+                index = 1;
+            }
+            else {
+                index = 2;
+            }
+        }
+    });
+
+    console.log(imageNames[index])
+
+    return [currentValue, currentStates[index], imageNames[index]];
+}
+
+
+function createOverviewDivsContent(measuringData, overviewData) {
+    overviewData.forEach(function (entry) {
+        let config = checkCurrentValueAgainstThreshold(measuringData, entry[0]);
+
+        let img = document.createElement("img");
+        img.src = "/assets/" + config[2] + ".png";
+
+        let p1 = document.createElement("p");
+        p1.innerHTML = "<strong>Current " + entry[0] + "</strong>: " + config[0] + " " + entry[1];
+
+        let p2 = document.createElement("p");
+        p2.innerHTML = "<strong>State:</strong> " + config[1];
+
+        let table = document.createElement("table");
+        let column1 = document.createElement("td");
+        let row1 = document.createElement("tr");
+        let column2 = document.createElement("td");
+
+        document.getElementById("overviews-container").appendChild(table);
+        table.appendChild(row1);
+        row1.appendChild(column1);
+        column1.append(img);
+        row1.appendChild(column2);
+        column2.appendChild(p1);
+        column2.appendChild(p2);
+    });
+}

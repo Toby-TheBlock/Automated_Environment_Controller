@@ -6,13 +6,10 @@
 
 <h1>Overview over the current environment conditions.</h1>
 <br />
-<div id="temp-container"></div>
-<br />
-<div id="light-container"></div>
+<div id="overviews-container"></div>
 <br />
 <br />
 
 <script>
-    let data = @Json.Serialize(Model.CurrentDataAndThreshold);
-    console.log(data)
+    createOverviewDivsContent(@Json.Serialize(Model.CurrentDataAndThreshold), [["Temperature", "°C"], ["Light", "lux"]]);
 </script>

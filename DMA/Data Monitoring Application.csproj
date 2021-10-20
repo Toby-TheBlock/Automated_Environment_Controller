@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\assets\lightCloudy.png" />
+    <None Include="wwwroot\assets\lightOvercast.png" />
+    <None Include="wwwroot\assets\lightSunny.png" />
+    <None Include="wwwroot\assets\tempCold.png" />
+    <None Include="wwwroot\assets\tempHot.png" />
+    <None Include="wwwroot\assets\tempRoom.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.9" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
