@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/main.css" />
+    <link rel="shortcut icon" type="image/ico" href="~/controllers.ico" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <script src="~/js/main.js" asp-append-version="true"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div>
+                <ul class="navlist">
+                    <li class="nav-item">
+                        <p>Automated Environment Controller:</p>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="" asp-page="/Index">Current Conditions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="" asp-page="/MeasuringData">Measuring Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="" asp-page="/LEDStatus">LED Status</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div>
+            <p>© Tobias Günther 2021. All rights reserved. :)</p>
+        </div>
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

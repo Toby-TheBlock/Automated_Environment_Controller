@@ -1,0 +1,107 @@
+C:\Users\DailyDriver\source\repos\Data Logging and Management Application\Data Logging and Management Application\bin\Debug\Data Logging and Management Application.exe.config
+C:\Users\DailyDriver\source\repos\Data Logging and Management Application\Data Logging and Management Application\bin\Debug\Data Logging and Management Application.exe
+C:\Users\DailyDriver\source\repos\Data Logging and Management Application\Data Logging and Management Application\bin\Debug\Data Logging and Management Application.pdb
+C:\Users\DailyDriver\source\repos\Data Logging and Management Application\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.csproj.AssemblyReference.cache
+C:\Users\DailyDriver\source\repos\Data Logging and Management Application\Data Logging and Management Application\obj\Debug\Data_Logging_and_Management_Application.Properties.Resources.resources
+C:\Users\DailyDriver\source\repos\Data Logging and Management Application\Data Logging and Management Application\obj\Debug\Data_Logging_and_Management_Application.SplashScreenForm.resources
+C:\Users\DailyDriver\source\repos\Data Logging and Management Application\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.csproj.GenerateResource.cache
+C:\Users\DailyDriver\source\repos\Data Logging and Management Application\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.csproj.CoreCompileInputs.cache
+C:\Users\DailyDriver\source\repos\Data Logging and Management Application\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.exe
+C:\Users\DailyDriver\source\repos\Data Logging and Management Application\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.pdb
+C:\Users\DailyDriver\source\repos\Data Logging and Management Application\Data Logging and Management Application\obj\Debug\Data_Logging_and_Management_Application.MainForm.resources
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\Data Logging and Management Application.exe.config
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\Data Logging and Management Application.exe
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\Data Logging and Management Application.pdb
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\NationalInstruments.DAQmx.dll
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.AccessControl.dll
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.Permissions.dll
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\NationalInstruments.Common.dll
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\NationalInstruments.DAQmx.xml
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Configuration.ConfigurationManager.xml
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.AccessControl.xml
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.Permissions.xml
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\NationalInstruments.Common.xml
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.csproj.AssemblyReference.cache
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data_Logging_and_Management_Application.MainForm.resources
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data_Logging_and_Management_Application.Properties.Resources.resources
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data_Logging_and_Management_Application.SplashScreenForm.resources
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.csproj.GenerateResource.cache
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.csproj.CoreCompileInputs.cache
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.csproj.CopyComplete
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.exe
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.pdb
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\Data Logging and Management Application.exe.config
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\Data Logging and Management Application.exe
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\Data Logging and Management Application.pdb
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\NationalInstruments.DAQmx.dll
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.AccessControl.dll
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.Permissions.dll
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\NationalInstruments.Common.dll
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\NationalInstruments.DAQmx.xml
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Configuration.ConfigurationManager.xml
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.AccessControl.xml
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.Permissions.xml
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\NationalInstruments.Common.xml
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.csproj.AssemblyReference.cache
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data_Logging_and_Management_Application.MainForm.resources
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data_Logging_and_Management_Application.Properties.Resources.resources
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data_Logging_and_Management_Application.SplashScreenForm.resources
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.csproj.GenerateResource.cache
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.csproj.CoreCompileInputs.cache
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.csproj.CopyComplete
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.exe
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Enviroment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.pdb
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\Data Logging and Management Application.exe.config
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\Data Logging and Management Application.exe
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\Data Logging and Management Application.pdb
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\NationalInstruments.DAQmx.dll
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.AccessControl.dll
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.Permissions.dll
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\NationalInstruments.Common.dll
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\NationalInstruments.DAQmx.xml
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Configuration.ConfigurationManager.xml
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.AccessControl.xml
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.Permissions.xml
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\NationalInstruments.Common.xml
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.csproj.AssemblyReference.cache
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data_Logging_and_Management_Application.MainForm.resources
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data_Logging_and_Management_Application.Properties.Resources.resources
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data_Logging_and_Management_Application.SplashScreenForm.resources
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.csproj.GenerateResource.cache
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.csproj.CoreCompileInputs.cache
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.csproj.CopyComplete
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.exe
+C:\Users\DailyDriver\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.pdb
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\Data Logging and Management Application.exe.config
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\Data Logging and Management Application.exe
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\Data Logging and Management Application.pdb
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\NationalInstruments.DAQmx.dll
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.AccessControl.dll
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.Permissions.dll
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\NationalInstruments.Common.dll
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\NationalInstruments.DAQmx.xml
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Configuration.ConfigurationManager.xml
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.AccessControl.xml
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.Permissions.xml
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\bin\Debug\NationalInstruments.Common.xml
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.csproj.AssemblyReference.cache
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data_Logging_and_Management_Application.MainForm.resources
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data_Logging_and_Management_Application.Properties.Resources.resources
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data_Logging_and_Management_Application.SplashScreenForm.resources
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.csproj.GenerateResource.cache
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.csproj.CoreCompileInputs.cache
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.csproj.CopyComplete
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.exe
+C:\Users\Tobias\OneDrive\Dokumenter\Programming\Automated_Environment_Controller\DLA & DMA\Data Logging and Management Application\obj\Debug\Data Logging and Management Application.pdb

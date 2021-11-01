@@ -1,0 +1,25 @@
+﻿@page
+@model Data_Monitoring_Application.Pages.MeasuringDataModel
+@{
+    ViewData["Title"] = "Measuring data";
+}
+
+<h1>Overview over all the gathered measurment data.</h1>
+<br />
+<div id="data-container"></div>
+<br />
+<br />
+
+<script>
+    let identifiers = findAllUniqueIdentifiers(@Json.Serialize(Model.MeasuringData));
+
+    if (identifiers.length == 0) {
+        document.getElementById("data-container").innerHTML = "There hasn't been gathered any data yet!"
+    } else {
+        createCanvasElements(identifiers);
+        createGraphs(@Json.Serialize(Model.MeasuringData), identifiers);
+    }
+</script>
+
+
+
