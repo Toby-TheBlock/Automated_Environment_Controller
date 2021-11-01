@@ -1,0 +1,15 @@
+﻿@page
+@model Data_Monitoring_Application.Pages.LEDStatusModel
+@{
+    ViewData["Title"] = "LED Status";
+}
+
+<h1>Overview over the LEDs status</h1>
+<br />
+<div id="led-container"></div>
+<br />
+<br />
+
+<script>
+    createLEDElements(@Json.Serialize(Model.LEDInformation));
+</script>

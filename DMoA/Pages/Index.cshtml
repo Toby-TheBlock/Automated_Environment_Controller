@@ -1,0 +1,21 @@
+﻿@page
+@model Data_Monitoring_Application.Pages.IndexModel
+@{
+    ViewData["Title"] = "Current Conditions";
+}
+
+<h1>Overview over the current environment conditions.</h1>
+<br />
+<div id="overviews-container"></div>
+<br />
+<br />
+
+<script>
+    let measuringData = @Json.Serialize(Model.CurrentDataAndThreshold)
+
+    if (measuringData.length == 0) {
+        document.getElementById("overviews-container").innerHTML = "There hasn't been gathered any data yet!"
+    } else {
+        createOverviewDivsContent(measuringData, [["Temperature", "°C"], ["Light", "lux"]]);
+    }
+</script>
