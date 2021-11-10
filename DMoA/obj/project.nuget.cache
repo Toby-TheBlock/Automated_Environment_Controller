@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GCZ3Rm3WHF+Zjyrec1tlbZKoEZfAb9z5E0LUqpsmzSJdRnKuU3fUJwVFTjPq7QSMOrCs96ZpQ6w4a2INySJxVw==",
+  "dgSpecHash": "04opeGQibe/1pJccx10fRzxcfVLT9qCLZ/29yR8S1P1q9kpZqUZn0ejh1/LXP+cePnQgpyLzA7VP/VVhHPxqVQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tobias\\OneDrive\\Dokumenter\\Programming\\Automated_Environment_Controller\\DMA\\Data Monitoring Application.csproj",
+  "projectFilePath": "C:\\Users\\Tobias\\OneDrive\\Dokumenter\\Programming\\Automated_Environment_Controller\\DMoA\\Data Monitoring Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tobias\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\5.0.9\\microsoft.aspnetcore.mvc.razor.extensions.5.0.9.nupkg.sha512",
     "C:\\Users\\Tobias\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\5.0.9\\microsoft.aspnetcore.mvc.razor.runtimecompilation.5.0.9.nupkg.sha512",
